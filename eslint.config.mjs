@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import mdx from "eslint-plugin-mdx";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -13,6 +14,12 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    ...mdx.flat,
+    processor: mdx.createRemarkProcessor({
+      lintCodeBlocks: true,
+    }),
+  },
 ]);
 
 export default eslintConfig;
