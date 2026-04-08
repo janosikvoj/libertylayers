@@ -41,7 +41,7 @@ export default function TableOfContents() {
   }, [toc]);
 
   return (
-    <nav className="sticky top-32 mt-[calc(100vh+var(--spacing)*32)] flex flex-col gap-1.5 text-sm pl-2 max-w-full">
+    <nav className="mt-32 flex flex-col gap-1.5 text-sm pl-2 max-w-full">
       {toc.map(({ id, text, level }) => (
         <a
           key={id}
