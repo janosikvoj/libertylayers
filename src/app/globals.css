@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
+@plugin "tailwindcss-motion";
 
 @theme {
   --color-transparent: lab(98.6846% -1.79058 9.77662 / 0);
@@ -23,4 +24,10 @@ body {
   --tw-prose-quote-borders: var(--color-yellow-200);
   --tw-prose-bullets: var(--color-yellow-500);
   --tw-prose-hr: var(--color-yellow-300);
+}
+
+@property --nav-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0rem;
 }

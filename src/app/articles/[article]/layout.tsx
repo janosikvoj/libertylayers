@@ -1,8 +1,7 @@
 'use client';
 
-import TableOfContents from '@/components/navigation/TableOfContents';
+import Sidebar from '@/components/navigation/Sidebar';
 import { cn } from '@/lib/utils';
-import { Button } from '@base-ui/react';
 import { useState } from 'react';
 
 export default function ArticlesLayout({
@@ -15,24 +14,15 @@ export default function ArticlesLayout({
   return (
     <div
       className={cn(
-        'grid lg:grid-cols-[0rem_1fr] [--nav-width:0rem] lg:[--nav-width:20rem] transition-all duration-500 ease-in-out',
-        navExpanded && 'lg:grid-cols-[var(--nav-width)_1fr]',
+        'flex [--nav-width:0rem] lg:[--nav-width:2.5rem] transition-[--nav-width] duration-500 ease-in-out',
+        navExpanded && 'lg:[--nav-width:20rem]',
       )}
     >
-      <Button
-        onClick={() => {
-          setNavExpanded(!navExpanded);
-        }}
-        className="absolute top-20 left-12"
-      >
-        TOC
-      </Button>
+      <Sidebar open={navExpanded} setOpen={setNavExpanded} />
 
-      <div className="hidden lg:block bg-linear-90 from-yellow-100 min-h-screen min-w-10">
-        <TableOfContents />
-      </div>
+      <div className="w-(--nav-width)" />
 
-      <main className="overflow-x-hidden flex flex-col items-center">
+      <main className="grow overflow-x-hidden flex flex-col items-center">
         <article
           className={cn(
             'px-12 max-w-[calc(100vw-var(--nav-width))] w-[65ch]',
