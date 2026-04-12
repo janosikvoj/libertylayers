@@ -5,7 +5,7 @@ import './globals.css';
 import { Header } from '@/components/navigation/Header';
 
 export const metadata: Metadata = {
-  title: '¤ Liberty Layers',
+  title: 'Liberty Layers',
 };
 
 export default function RootLayout({

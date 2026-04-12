@@ -11,14 +11,16 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ open, setOpen }) => {
   return (
-    <aside className="fixed z-40 h-screen top-0 left-0 hidden lg:flex flex-col justify-center bg-radial-[at_0%_50%] from-yellow-200 motion-preset-slide-right motion-delay-300 overflow-hidden">
-      <div className="min-w-10 w-(--nav-width) p-1">
-        <TableOfContents />
+    <aside className="fixed z-40 h-screen top-0 left-0 hidden lg:block bg-radial-[at_0%_50%] from-yellow-200 motion-preset-slide-right motion-delay-300 overflow-hidden">
+      <div className="h-full min-w-10 w-(--nav-width) p-1 flex flex-col justify-end">
+        <div className="grow flex flex-col justify-center">
+          <TableOfContents />
+        </div>
         <Button
           onClick={() => {
             setOpen(!open);
           }}
-          className="mt-6 py-2 hover:cursor-pointer flex justify-between w-full min-w-fit"
+          className="mb-4 py-2 hover:cursor-pointer flex justify-between w-full min-w-fit"
         >
           <svg
             className="h-auto w-8 stroke-1 stroke-stone-500 fill-none"

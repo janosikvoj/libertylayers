@@ -28,4 +28,13 @@ const Pip: React.FC<PipProps> = ({ className, children, viewBox }) => {
   );
 };
 
+export const PipCorners = () => (
+  <>
+    <Pip className="absolute left-0 top-0 stroke-yellow-500 h-4 rotate-45" />
+    <Pip className="absolute left-0 bottom-0 stroke-yellow-500 h-4 rotate-45" />
+    <Pip className="absolute right-0 top-0 stroke-yellow-500 h-4 rotate-45" />
+    <Pip className="absolute right-0 bottom-0 stroke-yellow-500 h-4 rotate-45" />
+  </>
+);
+
 export default Pip;

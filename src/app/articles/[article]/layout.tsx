@@ -14,10 +14,12 @@ export default function ArticlesLayout({
   return (
     <div
       className={cn(
-        'flex [--nav-width:0rem] lg:[--nav-width:2.5rem] transition-[--nav-width] duration-500 ease-in-out',
+        'relative flex [--nav-width:0rem] lg:[--nav-width:2.5rem] transition-[--nav-width] duration-500 ease-in-out',
         navExpanded && 'lg:[--nav-width:20rem]',
       )}
     >
+      <div className="fixed inset-0 bg-[url(/noise.png)] mix-blend-hard-light pointer-events-none" />
+
       <Sidebar open={navExpanded} setOpen={setNavExpanded} />
 
       <div className="w-(--nav-width)" />

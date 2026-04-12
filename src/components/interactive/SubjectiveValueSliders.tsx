@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Slider } from '@base-ui/react/slider';
 import { Popover } from '@base-ui/react/popover';
-import Pip from '../brand/Pip';
+import Pip, { PipCorners } from '../brand/Pip';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -109,6 +109,7 @@ function SliderRow({ item }: { item: (typeof ITEMS)[number] }) {
       onValueChange={() => setRevealed(false)}
       onValueCommitted={() => setRevealed(true)}
       min={0}
+      step={0.1}
       max={100}
       className="flex flex-col"
     >
@@ -161,10 +162,7 @@ export default function SubjectiveValueSliders() {
   return (
     <div className="mx-16 max-w-6xl w-screen">
       <div className="relative px-24 py-16 flex flex-col gap-12 bg-yellow-300">
-        <Pip className="absolute left-0 top-0 stroke-yellow-500 h-4 rotate-45" />
-        <Pip className="absolute left-0 bottom-0 stroke-yellow-500 h-4 rotate-45" />
-        <Pip className="absolute right-0 top-0 stroke-yellow-500 h-4 rotate-45" />
-        <Pip className="absolute right-0 bottom-0 stroke-yellow-500 h-4 rotate-45" />
+        <PipCorners />
         {ITEMS.map((item) => (
           <SliderRow key={item.id} item={item} />
         ))}
