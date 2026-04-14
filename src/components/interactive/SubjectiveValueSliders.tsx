@@ -148,7 +148,7 @@ function SliderRow({ item }: { item: (typeof ITEMS)[number] }) {
       </Slider.Control>
 
       {/* Min / max labels */}
-      <div className="flex justify-between text-yellow-600 select-none text-2xl font-extralight uppercase mt-1">
+      <div className="flex justify-between text-yellow-600 select-none text-2xl font-extralight uppercase mt-2">
         <span>Worthless</span>
         <span>Invaluable</span>
       </div>

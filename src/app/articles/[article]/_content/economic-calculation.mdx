@@ -1,5 +1,7 @@
 import Bleed from '@/components/common/Bleed';
 import SubjectiveValueSliders from '@/components/interactive/SubjectiveValueSliders';
+import AllocationDiamond from '@/components/interactive/AllocationDiamond';
+import PencilPriceReceipt from '@/components/interactive/PencilPriceReceipt';
 import { Highlight, Underline } from '@/components/brand/inline-marks.tsx';
 
 # Economic Calculation
@@ -159,6 +161,10 @@ faster than any board could process it. By the time the board has "found" the
 correct price for last year's wheat, this year's harvest conditions have
 already made it irrelevant.
 
+<Bleed className="flex justify-center">
+  <AllocationDiamond />
+</Bleed>
+
 This is not a computational problem that faster computers will one day solve.
 It is a **structural impossibility** rooted in the nature of knowledge itself.
 
@@ -200,6 +206,10 @@ What the price mechanism accomplishes is genuinely remarkable: it **distills
 all of this dispersed, tacit, constantly-changing knowledge into a single
 number** that every participant in the economy can read and act upon.
 
+<Bleed className="flex justify-center">
+  <PencilPriceReceipt />
+</Bleed>
+
 When a copper mine floods in Chile, no central directive is needed to instruct
 factories in Germany to conserve copper. The price of copper rises. Every
 manufacturer who uses copper now faces a simple signal: _this resource has
@@ -207,12 +217,6 @@ become more scarce_. Some switch to aluminum. Some redesign their products.
 Some stockpile before prices rise further. Thousands of independent,
 intelligent adjustments happen simultaneously, coordinated by nothing more than
 a number on a screen.
-
-<Bleed>
-  <div className="mx-8">
-    INTERACTIVE: Central Planning vs. Market Split-Screen
-  </div>
-</Bleed>
 
 ---
 

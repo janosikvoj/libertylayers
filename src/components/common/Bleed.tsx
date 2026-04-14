@@ -9,7 +9,7 @@ const Bleed: React.FC<BleedProps> = ({ children, className, ...props }) => {
   return (
     <div
       className={cn(
-        'relative w-screen max-w-[calc(100vw-var(--nav-width))] left-1/2 -translate-x-1/2',
+        'relative w-screen max-w-[calc(100vw-var(--nav-width))] left-1/2 -translate-x-1/2 not-prose',
         className,
       )}
       {...props}
