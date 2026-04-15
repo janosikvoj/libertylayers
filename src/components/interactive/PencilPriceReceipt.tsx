@@ -248,7 +248,7 @@ function PencilIllustration({
             className={cn(
               'transition-all',
               activeId === 'cedar'
-                ? 'fill-stone-100 stroke-stone-600'
+                ? 'fill-stone-200 stroke-stone-600'
                 : 'fill-yellow-100 stroke-yellow-600',
             )}
             d="M11.5 0.0998535L22.5 54.0999V62.0999H0.5V54.0999L11.5 0.0998535Z"
@@ -274,7 +274,7 @@ function PencilIllustration({
               activeId === 'wax' ||
                 activeId === 'lacquer' ||
                 activeId === 'glue'
-                ? 'fill-stone-400 stroke-stone-600'
+                ? 'fill-stone-300 stroke-stone-600'
                 : 'fill-yellow-400 stroke-yellow-600',
             )}
           >
@@ -297,7 +297,7 @@ function PencilIllustration({
             className={cn(
               'transition-all',
               activeId === 'eraser'
-                ? 'fill-stone-600 stroke-stone-600'
+                ? 'fill-stone-500 stroke-stone-500'
                 : 'fill-yellow-600 stroke-yellow-600',
             )}
             x="2.5"
@@ -313,7 +313,7 @@ function PencilIllustration({
             className={cn(
               'transition-all',
               activeId === 'ferrule'
-                ? 'fill-stone-100 stroke-stone-600'
+                ? 'fill-stone-200 stroke-stone-600'
                 : 'fill-yellow-100 stroke-yellow-600',
             )}
           >

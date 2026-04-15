@@ -1,5 +1,7 @@
 import type { MDXComponents } from 'mdx/types';
 import { Highlight, Underline } from '@/components/brand/inline-marks';
+import { GlossaryTerm } from './components/navigation/GlossaryTerm';
+import Link from 'next/link';
 
 const components: MDXComponents = {
   h1: ({ children }) => (
@@ -21,6 +23,15 @@ const components: MDXComponents = {
     </Highlight>
   ),
   em: ({ children }) => <Underline as="em">{children}</Underline>,
+  a: ({ href, children }) => {
+    // Intercept glossary links
+    const glossaryMatch = href?.match(/^\/glossary\/(.+)$/);
+    if (glossaryMatch) {
+      return <GlossaryTerm slug={glossaryMatch[1]}>{children}</GlossaryTerm>;
+    }
+    // Everything else: standard Next.js link
+    return <Link href={href ?? '#'}>{children}</Link>;
+  },
 };
 
 export function useMDXComponents(): MDXComponents {

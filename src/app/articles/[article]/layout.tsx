@@ -18,8 +18,6 @@ export default function ArticlesLayout({
         navExpanded && 'lg:[--nav-width:20rem]',
       )}
     >
-      <div className="fixed inset-0 bg-[url(/noise.png)] mix-blend-hard-light pointer-events-none" />
-
       <Sidebar open={navExpanded} setOpen={setNavExpanded} />
 
       <div className="w-(--nav-width)" />
@@ -37,6 +35,8 @@ export default function ArticlesLayout({
           {children}
         </article>
       </main>
+
+      <div className="fixed -z-10 inset-0 bg-[url(/noise.png)] mix-blend-hard-light pointer-events-none" />
     </div>
   );
 }
