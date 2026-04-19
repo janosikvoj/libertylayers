@@ -13,7 +13,7 @@
 }
 
 html {
-  @apply scroll-smooth scroll-pt-32;
+  @apply scroll-smooth scroll-pt-32 selection:bg-stone-900 selection:text-yellow-100;
 }
 
 body {

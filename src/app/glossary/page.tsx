@@ -1,7 +1,36 @@
 export default function GlossaryPage() {
   return (
     <div className="px-12 pt-24 flex gap-6">
-      <section>
+      <svg className="absolute w-0 h-0 pointer-events-none">
+        <defs>
+          <filter
+            id="displacement"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency={0.05}
+              numOctaves="1"
+              result="noise"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale={20}
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+      <section
+        style={{
+          filter: `url(#displacement)`,
+        }}
+      >
         <h2 className="text-2xl">Economic Concepts</h2>
         <ul>
           <li>Subjective Value</li>
