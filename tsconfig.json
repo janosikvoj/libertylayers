@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/content/page.mdx", "src/app/articles/_(articles)/economic-calculation/page.mdx"  ],
+, "src/content/page.mdx", "src/app/(subpages)/articles/_(articles)/economic-calculation/page.mdx"  ],
   "exclude": ["node_modules"]
 }

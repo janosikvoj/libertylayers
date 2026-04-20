@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "motion/react";
+import React from 'react';
+import { motion } from 'motion/react';
 
 interface CensoredProps {
   children: string;
@@ -30,7 +30,7 @@ const CensoredSegment: React.FC<{ segment: string; index: number }> = ({
         }}
         transition={{
           duration: 1 / segment.length,
-          type: "tween",
+          type: 'tween',
           ease: [0.42, 0, 0.58, 1],
           delay: getDelay(index),
         }}
@@ -44,7 +44,7 @@ const Censored: React.FC<CensoredProps> = ({ children }) => {
   const segments = splitText(children);
 
   return segments.map((segment, i) => {
-    if (segment.trim() === "") {
+    if (segment.trim() === '') {
       return <span key={i}>{segment}</span>;
     }
     return <CensoredSegment index={i} key={i} segment={segment} />;

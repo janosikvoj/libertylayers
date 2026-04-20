@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
-import { Header } from '@/components/navigation/Header';
 
 export const metadata: Metadata = {
   title: 'Liberty Layers',
@@ -20,7 +19,6 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-sans bg-stone-950">
-        <Header />
         {children}
         <svg className="absolute h-0 w-0" aria-hidden="true">
           <defs>
@@ -41,6 +39,14 @@ export default function RootLayout({
                 result="displaced"
               />
             </filter>
+            <pattern
+              id="stripes-horizontal"
+              width="6"
+              height="6"
+              patternUnits="userSpaceOnUse"
+            >
+              <rect width="6" height="1" className="fill-yellow-500" />
+            </pattern>
           </defs>
         </svg>
       </body>

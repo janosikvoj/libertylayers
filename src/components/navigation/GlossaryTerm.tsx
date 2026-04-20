@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Popover } from '@base-ui/react';
 import { cn } from '@/lib/utils';
-import { GLOSSARY } from '@/app/glossary/_content/glossary';
+import { GLOSSARY } from '@/app/(subpages)/glossary/_content/glossary';
 import { motion } from 'motion/react';
 
 export function GlossaryTerm({

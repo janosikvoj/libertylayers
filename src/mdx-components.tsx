@@ -7,6 +7,7 @@ const components: MDXComponents = {
   h1: ({ children }) => (
     <div className="h-[90vh] flex items-center">
       <h1
+        style={{ filter: 'url(#stamp)' }}
         id="economic-calculation"
         className="font-semibold text-8xl tracking-tight"
       >

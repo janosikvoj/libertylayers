@@ -1,9 +1,14 @@
+import { cn } from '@/lib/utils';
 import { NavigationMenu } from '@base-ui/react/navigation-menu';
 import Link from 'next/link';
 
-export const Header = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({ className }) => {
   return (
-    <header className="fixed top-0 left-0 z-50">
+    <header className={cn('fixed top-0 left-0 z-50', className)}>
       <NavigationMenu.Root className="mx-12 my-4">
         <NavigationMenu.List className="flex gap-6">
           <NavigationMenu.Item className="font-semibold">
