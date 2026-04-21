@@ -1,47 +1,69 @@
+'use client';
+import { BOOKS } from './_content/books';
+import { RESOURCES } from './_content/resources';
+import { THINKERS } from './_content/thinkers';
+import Bookshelf from './_components/Bookshelf';
+import ThinkerTimeline from './_components/ThinkerTimeline';
+import Link from 'next/link';
+
 export default function ArchivePage() {
   return (
-    <div className="px-12 pt-24 flex gap-6">
-      <section>
-        <h2 className="text-2xl">Key Thinkers</h2>
-        <ul>
-          <li>Murray Rothbard (1926–1995)</li>
-          <li>Ludwig von Mises (1881–1973)</li>
-          <li>Friedrich Hayek (1899–1992)</li>
-          <li>David Friedman (b. 1945)</li>
-          <li>Lysander Spooner (1808–1887)</li>
-          <li>Hans-Hermann Hoppe (b. 1949)</li>
-          <li>Robert Nozick (1938–2002)</li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="text-2xl">Reading List</h2>
-        <ul>
-          <li>
-            The Machinery of Freedom — David Friedman (1973, 3rd ed. 2014)
-          </li>
-          <li>For a New Liberty — Murray Rothbard (1973)</li>
-          <li>The Road to Serfdom — Friedrich Hayek (1944)</li>
-          <li>No Treason — Lysander Spooner (1867)</li>
-          <li>Human Action — Ludwig von Mises (1949)</li>
-          <li>Man, Economy, and State — Murray Rothbard (1962)</li>
-          <li>The Ethics of Liberty — Murray Rothbard (1982)</li>
-          <li>Democracy: The God That Failed — Hans-Hermann Hoppe (2001)</li>
-          <li>The Use of Knowledge in Society — Friedrich Hayek (1945)</li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="text-2xl">External Resources</h2>
-        <ul>
-          <li>mises.org</li>
-          <li>fee.org</li>
-          <li>ankap.urza.cz</li>
-          <li>The Tom Woods Show</li>
-          <li>Part of the Problem</li>
-          <li>Students for Liberty</li>
-          <li>Liberální Institut</li>
-          <li>Parallel Polis</li>
-        </ul>
-      </section>
+    <div className="bg-stone-100 min-h-screen pt-24 pb-24">
+      <div className="max-w-screen-2xl mx-auto space-y-48">
+        <section className="">
+          <h2 className="px-12 mb-12 text-5xl font-semibold tracking-tight">
+            Reading List
+          </h2>
+          <Bookshelf books={BOOKS} />
+        </section>
+
+        <section className="px-12">
+          <h2 className="text-5xl font-semibold tracking-tight">
+            Key Thinkers
+          </h2>
+          <ThinkerTimeline thinkers={THINKERS} />
+        </section>
+
+        <section>
+          <h2 className="px-12 mb-12 text-5xl font-semibold tracking-tight">
+            External Resources
+          </h2>
+
+          <div className="px-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-stone-300 border border-stone-300">
+            {RESOURCES.map((resource) => (
+              <Link
+                key={resource.name}
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-stone-100 p-6 hover:pl-10 flex flex-col justify-between gap-8 hover:bg-yellow-400 transition-all duration-200"
+              >
+                <div className="absolute top-0 left-0 w-0 h-full bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)] text-yellow-600 transition-all delay-100 duration-300 group-hover:w-4" />
+
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-stone-400 group-hover:text-stone-600">
+                  {resource.type}
+                </span>
+
+                <div className="flex items-end justify-between gap-2">
+                  <span className="font-semibold text-stone-800 group-hover:text-stone-900 leading-tight">
+                    {resource.name}
+                  </span>
+
+                  <svg
+                    className="shrink-0 w-3 h-3 text-stone-300 group-hover:text-stone-700 transition-colors"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
+                    <path d="M2 10L10 2M10 2H4M10 2v6" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

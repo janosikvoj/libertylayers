@@ -9,7 +9,7 @@ export default function PageLayout({
     <>
       <Header />
       {children}
-      <div className="fixed inset-0 bg-[url(/noise.png)] mix-blend-multiply pointer-events-none" />
+      <div className="fixed inset-0 bg-[url(/noise.png)] mix-blend-hard-light pointer-events-none" />
     </>
   );
 }

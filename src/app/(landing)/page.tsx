@@ -48,6 +48,12 @@ const QUOTES = [
 
 export default function LandingPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleQuoteComplete = () => {
     setTimeout(() => {
@@ -66,58 +72,62 @@ export default function LandingPage() {
       <div className="absolute left-0 top-12 w-full h-px bg-yellow-500" />
       <div className="absolute left-0 bottom-12 w-full h-px bg-yellow-500" />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <LayersOfLiberty
-          className="absolute top-0 w-full max-h-full h-auto"
-          fill="url(#stripes-horizontal)"
-          preserveAspectRatio="xMinYMid meet"
-        />
-      </motion.div>
-
-      <AnarchyIsOrder className="absolute fill-yellow-600 h-[50%] -right-22 -bottom-2 rotate-20 pointer-events-none" />
-
-      <div className="pt-24 px-12 flex-3 flex flex-col items-center justify-center gap-8">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={currentIndex}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6 }}
-            style={{ filter: 'url(#stamp)' }}
-            className="relative max-w-5xl text-6xl text-center font-semibold tracking-tighter text-balance text-stone-900"
-          >
-            <span
-              style={{ filter: 'url(#stamp)' }}
-              className="absolute bottom-0 left-0 translate-y-full px-[0.1em] leading-none w-fit font-mono font-bold outline-6 uppercase text-6xl tracking-tighter -rotate-6 rounded-sm text-yellow-600 pointer-events-none"
-            >
-              {`¤ ${currentIndex + 1}`}
-            </span>
-
-            <Censored onComplete={handleQuoteComplete}>
-              {currentQuote.text}
-            </Censored>
-          </motion.p>
-        </AnimatePresence>
-      </div>
-      <div className="z-10 p-12 w-full flex-1 flex items-end">
-        <AnimatePresence mode="wait">
-          <motion.p
-            key={currentIndex}
+      {isReady && (
+        <>
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl text-stone-900 uppercase leading-none -mb-[0.1em]"
+            transition={{ duration: 1 }}
           >
-            {currentQuote.author}
-          </motion.p>
-        </AnimatePresence>
-      </div>
+            <LayersOfLiberty
+              className="absolute top-0 w-full max-h-full h-auto"
+              fill="url(#stripes-horizontal)"
+              preserveAspectRatio="xMinYMid meet"
+            />
+          </motion.div>
+
+          <AnarchyIsOrder className="absolute fill-yellow-600 h-[50%] -right-22 -bottom-2 rotate-20 pointer-events-none" />
+
+          <div className="pt-24 px-12 flex-3 flex flex-col items-center justify-center gap-8">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentIndex}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.6 }}
+                style={{ filter: 'url(#stamp)' }}
+                className="relative max-w-5xl text-6xl text-center font-semibold tracking-tighter text-balance text-stone-900"
+              >
+                <span
+                  style={{ filter: 'url(#stamp)' }}
+                  className="absolute bottom-0 left-0 translate-y-full px-[0.1em] leading-none w-fit font-mono font-bold outline-6 uppercase text-6xl tracking-tighter -rotate-6 rounded-sm text-yellow-600 pointer-events-none"
+                >
+                  {`¤ ${currentIndex + 1}`}
+                </span>
+
+                <Censored onComplete={handleQuoteComplete}>
+                  {currentQuote.text}
+                </Censored>
+              </motion.p>
+            </AnimatePresence>
+          </div>
+          <div className="z-10 p-12 w-full flex-1 flex items-end">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={currentIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-2xl text-stone-900 uppercase leading-none -mb-[0.1em]"
+              >
+                {currentQuote.author}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+        </>
+      )}
       <div className="fixed inset-0 bg-[url(/noise.png)] mix-blend-hard-light pointer-events-none" />
     </div>
   );
