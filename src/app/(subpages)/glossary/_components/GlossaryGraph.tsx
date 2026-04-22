@@ -146,6 +146,7 @@ function GlossaryGraph({
               ? 'var(--color-stone-200)'
               : 'var(--color-stone-300)',
         },
+        selectable: false,
         type: 'simplebezier',
       };
     });

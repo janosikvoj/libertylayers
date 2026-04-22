@@ -58,7 +58,7 @@ export function GlossaryTerm({
 
             {/* Read more */}
             <Link
-              href={`/glossary/${entry.slug}`}
+              href={`/glossary/?term=${entry.slug}`}
               className="text-sm italic font-serif text-yellow-600 stroke-yellow-600 hover:text-yellow-700 hover:stroke-yellow-700 transition-colors flex gap-2 justify-between"
             >
               Glossary

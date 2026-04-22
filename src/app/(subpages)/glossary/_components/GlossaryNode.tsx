@@ -11,13 +11,6 @@ const CATEGORY_STYLES: Record<GlossaryEntry['category'], string> = {
   technical: 'bg-yellow-200 text-stone-800',
 };
 
-const CATEGORY_HANDLE: Record<GlossaryEntry['category'], string> = {
-  economic: '!bg-yellow-600',
-  ethical: '!bg-yellow-400',
-  political: '!bg-stone-400',
-  technical: '!bg-stone-400',
-};
-
 export type GlossaryNodeData = {
   entry: GlossaryEntry;
   isSelected: boolean;
@@ -37,20 +30,15 @@ export function GlossaryNode({ data }: NodeProps<GlossaryNodeType>) {
       <div
         className={cn(
           'px-3 py-2 transition-all duration-300 cursor-pointer select-none',
-          'font-semibold tracking-tight text-sm whitespace-nowrap',
+          'font-semibold tracking-tight whitespace-nowrap',
           CATEGORY_STYLES[entry.category],
-          isSelected && 'ring-2 ring-offset-2 ring-yellow-500',
-          dimmed && 'opacity-20',
+          isSelected && 'ring-1 ring-offset-2 ring-yellow-600',
+          dimmed && 'bg-yellow-50 ring-1 ring-stone-200 text-stone-400',
         )}
       >
         ¤ {entry.term}
       </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!w-0 !h-0 !border-none !bg-transparent !opacity-0"
-        style={{ top: '50%', transform: 'translateY(-50%)' }}
-      />
+      <Handle type="source" position={Position.Left} className="opacity-0" />
     </>
   );
 }

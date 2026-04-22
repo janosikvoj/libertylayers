@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 export const metadata: Metadata = {
   title: 'Liberty Layers',
@@ -19,7 +20,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-sans bg-stone-950">
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
         <svg className="absolute h-0 w-0" aria-hidden="true">
           <defs>
             <filter id="stamp" x="-5%" y="-5%" width="110%" height="110%">
