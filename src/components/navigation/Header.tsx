@@ -53,9 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                 href={item.href}
                 className={cn('group relative', i === 0 && 'font-semibold')}
               >
-                <span className="relative z-10 block group-hover:scale-97 transition-all">
-                  {item.title}
-                </span>
+                <span className="relative z-10 block">{item.title}</span>
                 <span
                   className={cn(
                     'block absolute bottom-0 w-0 h-full -mx-2 bg-[repeating-linear-gradient(to_right,currentColor_0px,currentColor_1px,transparent_1px,transparent_3px)] transition-all ease-in-out duration-300 text-yellow-400',

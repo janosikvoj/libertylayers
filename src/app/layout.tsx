@@ -48,6 +48,30 @@ export default function RootLayout({
               <rect width="6" height="1" className="fill-yellow-500" />
             </pattern>
           </defs>
+
+          <defs>
+            <filter
+              id="displacement"
+              x="-20%"
+              y="-20%"
+              width="140%"
+              height="140%"
+            >
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency={0.05}
+                numOctaves="1"
+                result="noise"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale={20}
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
         </svg>
       </body>
     </html>

@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function ArchivePage() {
   return (
-    <div className="bg-stone-100 min-h-screen pt-24 pb-24">
+    <div className="bg-stone-100 min-h-screen pt-24">
       <div className="max-w-screen-2xl mx-auto space-y-48">
         <section className="">
           <h2 className="px-12 mb-12 text-5xl font-semibold tracking-tight">
@@ -61,6 +61,10 @@ export default function ArchivePage() {
                 </div>
               </Link>
             ))}
+            <div className="bg-stone-100 h-48" />
+            <div className="bg-stone-100 h-48" />
+            <div className="bg-stone-100 h-48" />
+            <div className="bg-stone-100 h-48" />
           </div>
         </section>
       </div>

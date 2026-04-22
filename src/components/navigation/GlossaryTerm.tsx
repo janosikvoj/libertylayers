@@ -53,8 +53,8 @@ export function GlossaryTerm({
               {entry.term}
             </h4>
 
-            {/* Short definition */}
-            <p className="text-stone-700 leading-snug mb-3">{entry.short}</p>
+            {/* Definition */}
+            <p className="text-stone-700 leading-snug mb-3">{entry.desc}</p>
 
             {/* Read more */}
             <Link

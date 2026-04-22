@@ -1,73 +1,104 @@
+'use client';
+
+import { useState } from 'react';
+import { GLOSSARY } from './_content/glossary';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'motion/react';
+import { ReactFlowProvider } from '@xyflow/react';
+import GlossaryGraph from './_components/GlossaryGraph';
+
+const CATEGORY_BADGE: Record<string, string> = {
+  economic: 'bg-yellow-400 text-stone-900',
+  ethical: 'bg-stone-900 text-yellow-400',
+  political: 'bg-stone-600 text-stone-100',
+  technical: 'bg-yellow-200 text-stone-800',
+};
+
 export default function GlossaryPage() {
+  const [selected, setSelected] = useState<string | null>(null);
+  const entry = selected ? GLOSSARY[selected] : null;
+
   return (
-    <div className="px-12 pt-24 flex gap-6">
-      <svg className="absolute w-0 h-0 pointer-events-none">
-        <defs>
-          <filter
-            id="displacement"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
+    <div className="h-screen flex">
+      {/* Graph */}
+      <div className="flex-1 min-w-0">
+        <ReactFlowProvider>
+          <GlossaryGraph selected={selected} onSelect={setSelected} />
+        </ReactFlowProvider>
+      </div>
+
+      {/* Detail sidebar */}
+      <AnimatePresence>
+        {entry && (
+          <motion.aside
+            key={entry.slug}
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: 360, opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="shrink-0 overflow-hidden border-l border-stone-200 bg-stone-50 flex flex-col"
           >
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency={0.05}
-              numOctaves="1"
-              result="noise"
-            />
-            <feDisplacementMap
-              in="SourceGraphic"
-              in2="noise"
-              scale={20}
-              xChannelSelector="R"
-              yChannelSelector="G"
-            />
-          </filter>
-        </defs>
-      </svg>
-      <section
-        style={{
-          filter: `url(#displacement)`,
-        }}
-      >
-        <h2 className="text-2xl">Economic Concepts</h2>
-        <ul>
-          <li>Subjective Value</li>
-          <li>Economic Calculation</li>
-          <li>Spontaneous Order</li>
-          <li>Time Preference</li>
-          <li>Praxeology</li>
-          <li>Opportunity Cost</li>
-          <li>Capital Theory</li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="text-2xl">Ethical Concepts</h2>
-        <ul>
-          <li>Non-Aggression Principle (NAP)</li>
-          <li>Self-Ownership</li>
-          <li>Negative Rights</li>
-          <li>Homesteading</li>
-          <li>Voluntaryism</li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="text-2xl">Political Concepts</h2>
-        <ul>
-          <li>Polycentricity</li>
-          <li>Public Choice Theory</li>
-          <li>Privatization</li>
-        </ul>
-      </section>
-      <section>
-        <h2 className="text-2xl">Technical Concepts</h2>
-        <ul>
-          <li>Decentralization</li>
-          <li>Cryptography</li>
-          <li>Blockchain</li>
-        </ul>
-      </section>
+            <div className="p-8 flex flex-col gap-6 w-[360px]">
+              {/* Category badge */}
+              <span
+                className={cn(
+                  'self-start font-mono text-[10px] uppercase tracking-[0.2em] px-2 py-1',
+                  CATEGORY_BADGE[entry.category],
+                )}
+              >
+                {entry.category}
+              </span>
+
+              {/* Spelling + pos */}
+              <div>
+                <p className="font-serif text-yellow-600 text-sm tracking-wide flex gap-2 justify-between">
+                  {entry.spelling}
+                  <span className="italic">{entry.partOfSpeech}</span>
+                </p>
+                <div className="w-full h-px bg-yellow-300 mt-2 mb-1" />
+                <div className="w-full h-px bg-yellow-300 mb-1" />
+                <div className="w-full h-px bg-yellow-300" />
+              </div>
+
+              {/* Term + desc */}
+              <div>
+                <h2 className="text-2xl font-semibold tracking-tight text-stone-900 mb-3">
+                  {entry.term}
+                </h2>
+                <p className="text-stone-700 leading-relaxed">{entry.desc}</p>
+              </div>
+
+              {/* Related terms */}
+              {entry.related && entry.related.length > 0 && (
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-3">
+                    Related
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {entry.related.map((slug) => {
+                      const rel = GLOSSARY[slug];
+                      if (!rel) return null;
+                      return (
+                        <button
+                          key={slug}
+                          onClick={() => setSelected(slug)}
+                          className={cn(
+                            'font-mono text-xs px-2 py-1 transition-colors',
+                            CATEGORY_BADGE[rel.category],
+                            'hover:opacity-80',
+                          )}
+                        >
+                          ¤ {rel.term}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
