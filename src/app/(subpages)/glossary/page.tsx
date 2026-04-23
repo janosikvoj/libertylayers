@@ -1,7 +1,7 @@
 'use client';
 
 import { parseAsString, useQueryState } from 'nuqs';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { GLOSSARY } from './_content/glossary';
 import { cn } from '@/lib/utils';
 import { ReactFlowProvider } from '@xyflow/react';
@@ -17,6 +17,14 @@ const CATEGORY_BADGE: Record<string, string> = {
 };
 
 export default function GlossaryPage() {
+  return (
+    <Suspense>
+      <GlossaryPageInner />
+    </Suspense>
+  );
+}
+
+function GlossaryPageInner() {
   const [selected, setSelected] = useQueryState('term', parseAsString);
   const [drawerOpen, setDrawerOpen] = useState(() => !!selected);
   const entry = selected ? GLOSSARY[selected] : null;

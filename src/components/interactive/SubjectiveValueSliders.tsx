@@ -42,6 +42,28 @@ const ITEMS: Item[] = [
       { value: 97, label: 'Palliative care patient' },
     ],
   },
+  {
+    id: 'silence',
+    label: 'Ten minutes of silence',
+    others: [
+      { value: 5, label: 'Meditation teacher' },
+      { value: 28, label: 'Open-plan office worker' },
+      { value: 55, label: 'Parent of three under five' },
+      { value: 80, label: 'Chronic tinnitus sufferer' },
+      { value: 96, label: 'Frontline soldier' },
+    ],
+  },
+  {
+    id: 'stranger',
+    label: 'A kind word from a stranger',
+    others: [
+      { value: 4, label: 'Popular influencer' },
+      { value: 22, label: 'Confident extrovert' },
+      { value: 58, label: 'Long-haul trucker, day 9' },
+      { value: 83, label: 'Grieving widow, first outing' },
+      { value: 99, label: 'Survivor, day of discharge' },
+    ],
+  },
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
@@ -101,22 +123,41 @@ function PersonaPip({ persona, index }: { persona: Persona; index: number }) {
   );
 }
 
-function SliderRow({ item }: { item: (typeof ITEMS)[number] }) {
+function SliderRow({
+  item,
+  onCommit,
+}: {
+  item: (typeof ITEMS)[number];
+  onCommit?: () => void;
+}) {
   const [revealed, setRevealed] = useState(false);
 
   return (
     <Slider.Root
       onValueChange={() => setRevealed(false)}
-      onValueCommitted={() => setRevealed(true)}
+      onValueCommitted={() => {
+        setRevealed(true);
+        onCommit?.();
+      }}
       min={0}
       step={0.1}
       max={100}
       className="flex flex-col"
     >
       {/* Label */}
-      <Slider.Label className="mb-8 text-center cursor-default font-semibold text-base tracking-tight">
-        {item.label}
-      </Slider.Label>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          type: 'spring',
+          visualDuration: 0.55,
+          bounce: 0.1,
+        }}
+      >
+        <Slider.Label className="mb-8 text-center cursor-default font-semibold text-base tracking-tight">
+          {item.label}
+        </Slider.Label>
+      </motion.div>
 
       {/* Track */}
       <Slider.Control className="relative h-8">
@@ -159,14 +200,40 @@ function SliderRow({ item }: { item: (typeof ITEMS)[number] }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function SubjectiveValueSliders() {
+  const [unlockedCount, setUnlockedCount] = useState(1);
+
   return (
     <div className="mx-16 max-w-6xl w-screen">
-      <div className="relative px-24 py-16 flex flex-col gap-12 bg-yellow-300">
+      <motion.div
+        layout
+        transition={{ type: 'spring', visualDuration: 0.5, bounce: 0.15 }}
+        className="relative px-24 py-16 flex flex-col gap-12 bg-yellow-300"
+      >
         <PipCorners />
-        {ITEMS.map((item) => (
-          <SliderRow key={item.id} item={item} />
+        {ITEMS.slice(0, unlockedCount).map((item, index) => (
+          <motion.div
+            key={item.id}
+            layout
+            initial={{ opacity: 0, clipPath: 'inset(0% -20% 100% -20%)' }}
+            animate={{ opacity: 1, clipPath: 'inset(0% -20% 0% -20%)' }}
+            transition={{
+              type: 'spring',
+              visualDuration: 0.55,
+              bounce: 0.1,
+              opacity: { duration: 0.5 },
+            }}
+          >
+            <SliderRow
+              item={item}
+              onCommit={
+                index === unlockedCount - 1 && unlockedCount < ITEMS.length
+                  ? () => setUnlockedCount((n) => n + 1)
+                  : undefined
+              }
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

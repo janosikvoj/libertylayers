@@ -33,6 +33,15 @@ const components: MDXComponents = {
     // Everything else: standard Next.js link
     return <Link href={href ?? '#'}>{children}</Link>;
   },
+  blockquote: ({ children }) => (
+    <figure className="my-24 mx-auto w-lg rotate-2 not-prose">
+      <div className="relative p-8 bg-yellow-200 text-yellow-300 bg-[repeating-linear-gradient(transparent,transparent_30px,currentColor_30px,currentColor_31px)]">
+        <div className="relative font-mono text-xl leading-snug text-yellow-900 text-pretty space-y-8">
+          {children}
+        </div>
+      </div>
+    </figure>
+  ),
 };
 
 export function useMDXComponents(): MDXComponents {

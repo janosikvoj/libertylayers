@@ -461,9 +461,9 @@ function Receipt({ part }: { part: PencilPart }) {
               Receipt
             </p>
 
-            <h3 className="text-5xl font-black uppercase tracking-tighter font-sans mb-2">
+            <p className="text-5xl font-black uppercase tracking-tighter font-sans mb-2">
               {part.label}
-            </h3>
+            </p>
 
             <p className="text-base font-sans mb-4  max-w-2xs">
               {part.description}
@@ -506,7 +506,10 @@ function Receipt({ part }: { part: PencilPart }) {
           </div>
 
           {/* Footer Section */}
-          <div className="px-8 pb-10 text-center text-xs tracking-widest leading-relaxed">
+          <div
+            className="px-8 pb-10 text-center text-xs tracking-widest leading-relaxed"
+            suppressHydrationWarning
+          >
             <div className="w-full h-12 bg-[repeating-linear-gradient(to_right,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)] text-yellow-500 mb-4" />
             {TIMESTAMP.date} – {TIMESTAMP.time}
           </div>
