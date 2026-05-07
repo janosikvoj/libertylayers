@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { parseAsString, useQueryState } from 'nuqs';
-import { Suspense, useState } from 'react';
-import { GLOSSARY } from './_content/glossary';
-import { cn } from '@/lib/utils';
-import { ReactFlowProvider } from '@xyflow/react';
-import GlossaryGraph from './_components/GlossaryGraph';
-import { Drawer } from '@base-ui/react';
-import Pip from '@/components/brand/Pip';
+import { parseAsString, useQueryState } from "nuqs";
+import { Suspense, useState } from "react";
+import { GLOSSARY } from "./_content/glossary";
+import { cn } from "@/lib/utils";
+import { ReactFlowProvider } from "@xyflow/react";
+import GlossaryGraph from "./_components/GlossaryGraph";
+import { Drawer } from "@base-ui/react";
+import Pip from "@/components/brand/Pip";
 
 const CATEGORY_BADGE: Record<string, string> = {
-  economic: 'bg-yellow-500 text-stone-900 fill-yellow-500 stroke-yellow-500',
-  ethical: 'bg-stone-900 text-yellow-400 fill-stone-900 stroke-stone-900',
-  political: 'bg-stone-600 text-stone-100 fill-stone-600 stroke-stone-600',
-  technical: 'bg-yellow-300 text-stone-800 fill-yellow-300 stroke-yellow-300',
+  economic: "bg-yellow-500 text-stone-900 fill-yellow-500 stroke-yellow-500",
+  ethical: "bg-stone-900 text-yellow-400 fill-stone-900 stroke-stone-900",
+  political: "bg-stone-600 text-stone-100 fill-stone-600 stroke-stone-600",
+  technical: "bg-yellow-300 text-stone-800 fill-yellow-300 stroke-yellow-300",
 };
 
 export default function GlossaryPage() {
@@ -25,7 +25,7 @@ export default function GlossaryPage() {
 }
 
 function GlossaryPageInner() {
-  const [selected, setSelected] = useQueryState('term', parseAsString);
+  const [selected, setSelected] = useQueryState("term", parseAsString);
   const [drawerOpen, setDrawerOpen] = useState(() => !!selected);
   const entry = selected ? GLOSSARY[selected] : null;
 
@@ -60,9 +60,9 @@ function GlossaryPageInner() {
             <div key={category} className="flex items-center gap-2">
               <Pip
                 className={cn(
-                  'rotate-45 h-4 fill-current stroke-current',
+                  "rotate-45 h-4 fill-current stroke-current",
                   colors,
-                  'bg-transparent',
+                  "bg-transparent",
                 )}
               />
               <span className="capitalize text-base leading-none tracking-tight font-normal text-stone-600">
@@ -87,9 +87,9 @@ function GlossaryPageInner() {
           <Drawer.Viewport className="fixed inset-0 flex justify-end pointer-events-none">
             <Drawer.Popup
               className={cn(
-                '[--bleed:3rem] pointer-events-auto w-md -mr-12 bg-yellow-200 overflow-y-auto overscroll-contain outline-none',
-                'transform-[translateX(var(--drawer-swipe-movement-x))] transition-[transform] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] ',
-                'data-swiping:select-none data-starting-style:transform-[translateX(calc(100%-var(--bleed)+2px))] data-ending-style:transform-[translateX(calc(100%-var(--bleed)+2px))] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)]',
+                "[--bleed:3rem] pointer-events-auto w-md -mr-12 bg-yellow-200 overflow-y-auto overscroll-contain outline-none",
+                "transform-[translateX(var(--drawer-swipe-movement-x))] transition-[transform] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] ",
+                "data-swiping:select-none data-starting-style:transform-[translateX(calc(100%-var(--bleed)+2px))] data-ending-style:transform-[translateX(calc(100%-var(--bleed)+2px))] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)]",
               )}
             >
               <div className="absolute top-0 left-0 w-4 h-full bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)] text-yellow-600" />
@@ -98,7 +98,7 @@ function GlossaryPageInner() {
                   {/* Category badge */}
                   <span
                     className={cn(
-                      'self-start font-mono text-xs leading-none uppercase tracking-[0.2em] px-2 py-1',
+                      "self-start font-mono text-xs leading-none uppercase tracking-[0.2em] px-2 py-1",
                       CATEGORY_BADGE[entry.category],
                     )}
                   >
@@ -139,9 +139,9 @@ function GlossaryPageInner() {
                               key={slug}
                               onClick={() => handleSelect(slug)}
                               className={cn(
-                                'font-mono text-xs px-2 py-1 transition-colors',
+                                "font-mono text-xs px-2 py-1 transition-colors",
                                 CATEGORY_BADGE[rel.category],
-                                'hover:opacity-80',
+                                "hover:opacity-80",
                               )}
                             >
                               ¤ {rel.term}

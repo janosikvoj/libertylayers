@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { PipCorners } from '../brand/Pip';
-import { Button, Tabs } from '@base-ui/react';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { PipCorners } from "../brand/Pip";
+import { Button, Tabs } from "@base-ui/react";
+import { cn } from "@/lib/utils";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -17,154 +17,154 @@ type PencilPart = {
 
 const PENCIL_PARTS: PencilPart[] = [
   {
-    id: 'graphite',
-    label: 'Graphite',
-    description: 'A mixture of graphite and clay mined on multiple continents.',
+    id: "graphite",
+    label: "Graphite",
+    description: "A mixture of graphite and clay mined on multiple continents.",
     receiptItems: [
-      'Miners in Sri Lanka & Mexico',
-      'Geological surveying crews',
-      'Open-pit mining machinery',
-      'Clay quarrying workers',
-      'Water used in ore washing',
-      'Chemical processing agents',
-      'Kiln-firing energy (900 °C)',
-      'Hardness-grade QA testing',
-      'Packaging & bulk transport',
-      'Import tariff administration',
-      'Port handling & warehousing',
-      'Laboratory material scientists',
-      'Safety regulation compliance',
-      'Environmental remediation fund',
+      "Miners in Sri Lanka & Mexico",
+      "Geological surveying crews",
+      "Open-pit mining machinery",
+      "Clay quarrying workers",
+      "Water used in ore washing",
+      "Chemical processing agents",
+      "Kiln-firing energy (900 °C)",
+      "Hardness-grade QA testing",
+      "Packaging & bulk transport",
+      "Import tariff administration",
+      "Port handling & warehousing",
+      "Laboratory material scientists",
+      "Safety regulation compliance",
+      "Environmental remediation fund",
     ],
   },
   {
-    id: 'glue',
-    label: 'Glue',
-    description: 'Casein-based adhesive bonding the core to cedar slats.',
+    id: "glue",
+    label: "Glue",
+    description: "Casein-based adhesive bonding the core to cedar slats.",
     receiptItems: [
-      'Dairy farmers & their cows',
-      'Milk trucking & refrigeration',
-      'Casein extraction plant workers',
-      'Chemical engineers (formulation)',
-      'Industrial mixing equipment',
-      'Adhesive quality testers',
-      'Safety data sheet authors',
-      'Storage temperature control',
-      'Drum manufacturing (metal)',
-      'Logistics & delivery drivers',
-      'Hazardous-material licensing',
-      'Animal feed for dairy herds',
-      'Veterinary care for cattle',
-      'Insurance on transport fleet',
+      "Dairy farmers & their cows",
+      "Milk trucking & refrigeration",
+      "Casein extraction plant workers",
+      "Chemical engineers (formulation)",
+      "Industrial mixing equipment",
+      "Adhesive quality testers",
+      "Safety data sheet authors",
+      "Storage temperature control",
+      "Drum manufacturing (metal)",
+      "Logistics & delivery drivers",
+      "Hazardous-material licensing",
+      "Animal feed for dairy herds",
+      "Veterinary care for cattle",
+      "Insurance on transport fleet",
     ],
   },
   {
-    id: 'cedar',
-    label: 'Cedar wood',
+    id: "cedar",
+    label: "Cedar wood",
     description:
-      'Incense cedar from California — split, grooved, and glued around the core.',
+      "Incense cedar from California — split, grooved, and glued around the core.",
     receiptItems: [
-      'Forest rangers & foresters',
-      'Logging truck drivers',
-      'Sawmill operators',
-      'Kiln-drying technicians',
-      'Slat-cutting machinery',
-      'Groove-routing CNC programs',
-      'Wood-grading inspectors',
-      'Reforestation planting crews',
-      'Rainfall & decades of sunlight',
-      'Soil nutrients & mycorrhizae',
-      'Fire-prevention infrastructure',
-      'Timber land ownership rights',
-      'Occupational safety training',
-      'Export documentation clerks',
+      "Forest rangers & foresters",
+      "Logging truck drivers",
+      "Sawmill operators",
+      "Kiln-drying technicians",
+      "Slat-cutting machinery",
+      "Groove-routing CNC programs",
+      "Wood-grading inspectors",
+      "Reforestation planting crews",
+      "Rainfall & decades of sunlight",
+      "Soil nutrients & mycorrhizae",
+      "Fire-prevention infrastructure",
+      "Timber land ownership rights",
+      "Occupational safety training",
+      "Export documentation clerks",
     ],
   },
   {
-    id: 'lacquer',
-    label: 'Lacquer',
+    id: "lacquer",
+    label: "Lacquer",
     description:
-      'Multiple coats of paint give the pencil its colour and smooth finish.',
+      "Multiple coats of paint give the pencil its colour and smooth finish.",
     receiptItems: [
-      'Petroleum refinery workers',
-      'Chemical synthesisers (resin)',
-      'Colour pigment manufacturers',
-      'Spray-coating machine operators',
-      'Ventilation & safety engineers',
-      'UV-curing lamp technicians',
-      'VOC emission regulation staff',
-      'Colour-matching laboratories',
-      'Solvent recovery systems',
-      'Waste disposal contractors',
-      'Industrial hygiene inspectors',
-      'Branding & packaging designers',
-      'Shelf-life testing labs',
-      'Raw material price negotiators',
+      "Petroleum refinery workers",
+      "Chemical synthesisers (resin)",
+      "Colour pigment manufacturers",
+      "Spray-coating machine operators",
+      "Ventilation & safety engineers",
+      "UV-curing lamp technicians",
+      "VOC emission regulation staff",
+      "Colour-matching laboratories",
+      "Solvent recovery systems",
+      "Waste disposal contractors",
+      "Industrial hygiene inspectors",
+      "Branding & packaging designers",
+      "Shelf-life testing labs",
+      "Raw material price negotiators",
     ],
   },
   {
-    id: 'wax',
-    label: 'Wax',
-    description: 'A thin wax coating reduces friction and adds a slight sheen.',
+    id: "wax",
+    label: "Wax",
+    description: "A thin wax coating reduces friction and adds a slight sheen.",
     receiptItems: [
-      'Petroleum or carnauba harvesters',
-      'Wax refinery plant workers',
-      'Carnauba palm farmers (Brazil)',
-      'Tropical agricultural labour',
-      'Shipping across the Atlantic',
-      'Blending & emulsification labs',
-      'Application roller technicians',
-      'Machine cleaning & maintenance',
-      'Quality-feel testing panelists',
-      'Cosmetic-grade certification',
-      'Agricultural export licensing',
-      'Currency exchange (BRL/USD)',
-      'Fumigation for customs entry',
-      'Environmental impact studies',
+      "Petroleum or carnauba harvesters",
+      "Wax refinery plant workers",
+      "Carnauba palm farmers (Brazil)",
+      "Tropical agricultural labour",
+      "Shipping across the Atlantic",
+      "Blending & emulsification labs",
+      "Application roller technicians",
+      "Machine cleaning & maintenance",
+      "Quality-feel testing panelists",
+      "Cosmetic-grade certification",
+      "Agricultural export licensing",
+      "Currency exchange (BRL/USD)",
+      "Fumigation for customs entry",
+      "Environmental impact studies",
     ],
   },
   {
-    id: 'ferrule',
-    label: 'Ferrule',
+    id: "ferrule",
+    label: "Ferrule",
     description:
-      'The aluminium band that clamps the eraser to the pencil body.',
+      "The aluminium band that clamps the eraser to the pencil body.",
     receiptItems: [
-      'Bauxite miners (Guinea, Australia)',
-      'Aluminium smelter workers',
-      'Rolling mill operators',
-      'Strip-cutting & stamping crews',
-      'Crimp-press machine engineers',
-      'Electroplating bath chemists',
-      'Anti-corrosion coating staff',
-      'Metal recycling infrastructure',
-      'Energy grid for electrolysis',
-      'Hydroelectric dam construction',
-      'Tooling & die manufacturers',
-      'Dimensional QA measurement',
-      'Trade union wage negotiations',
-      'Carbon offset scheme auditors',
+      "Bauxite miners (Guinea, Australia)",
+      "Aluminium smelter workers",
+      "Rolling mill operators",
+      "Strip-cutting & stamping crews",
+      "Crimp-press machine engineers",
+      "Electroplating bath chemists",
+      "Anti-corrosion coating staff",
+      "Metal recycling infrastructure",
+      "Energy grid for electrolysis",
+      "Hydroelectric dam construction",
+      "Tooling & die manufacturers",
+      "Dimensional QA measurement",
+      "Trade union wage negotiations",
+      "Carbon offset scheme auditors",
     ],
   },
   {
-    id: 'eraser',
-    label: 'Eraser',
+    id: "eraser",
+    label: "Eraser",
     description:
-      'The plug eraser — vulcanised rubber crimped inside the ferrule.',
+      "The plug eraser — vulcanised rubber crimped inside the ferrule.",
     receiptItems: [
-      'Rubber tappers in Malaysia',
-      'Rubber plantation owners',
-      'Tropical deforestation offsets',
-      'Vulcanisation chemical workers',
-      'Sulphur mining & processing',
-      'Pumice powder suppliers',
-      'Abrasive-grade QA labs',
-      'Colour pigment (pink dye)',
-      'Extrusion machine operators',
-      'Cutting & sizing machinery',
-      'Eraser hardness-feel testers',
-      'Shipping containers & cooling',
-      'Import duty & customs filing',
-      'Decades of agricultural trade',
+      "Rubber tappers in Malaysia",
+      "Rubber plantation owners",
+      "Tropical deforestation offsets",
+      "Vulcanisation chemical workers",
+      "Sulphur mining & processing",
+      "Pumice powder suppliers",
+      "Abrasive-grade QA labs",
+      "Colour pigment (pink dye)",
+      "Extrusion machine operators",
+      "Cutting & sizing machinery",
+      "Eraser hardness-feel testers",
+      "Shipping containers & cooling",
+      "Import duty & customs filing",
+      "Decades of agricultural trade",
     ],
   },
 ];
@@ -173,56 +173,56 @@ const PENCIL_PARTS: PencilPart[] = [
 
 const HOTSPOTS = [
   {
-    id: 'graphite',
-    top: '3%',
+    id: "graphite",
+    top: "3%",
     box: {
       y: 0.5,
       h: 17,
     },
   },
   {
-    id: 'cedar',
-    top: '8%',
+    id: "cedar",
+    top: "8%",
     box: {
       y: 17.5,
       h: 37,
     },
   },
   {
-    id: 'glue',
-    top: '19%',
+    id: "glue",
+    top: "19%",
     box: {
       y: 54.5,
       h: 141,
     },
   },
   {
-    id: 'lacquer',
-    top: '45%',
+    id: "lacquer",
+    top: "45%",
     box: {
       y: 195.5,
       h: 140,
     },
   },
   {
-    id: 'wax',
-    top: '73%',
+    id: "wax",
+    top: "73%",
     box: {
       y: 335.5,
       h: 141,
     },
   },
   {
-    id: 'ferrule',
-    top: '87%',
+    id: "ferrule",
+    top: "87%",
     box: {
       y: 476.5,
       h: 33,
     },
   },
   {
-    id: 'eraser',
-    top: '93%',
+    id: "eraser",
+    top: "93%",
     box: {
       y: 509.5,
       h: 16,
@@ -246,10 +246,10 @@ function PencilIllustration({
           {/* Sharpened edge */}
           <path
             className={cn(
-              'transition-all',
-              activeId === 'cedar'
-                ? 'fill-stone-200 stroke-stone-600'
-                : 'fill-yellow-100 stroke-yellow-600',
+              "transition-all",
+              activeId === "cedar"
+                ? "fill-stone-200 stroke-stone-600"
+                : "fill-yellow-100 stroke-yellow-600",
             )}
             d="M11.5 0.0998535L22.5 54.0999V62.0999H0.5V54.0999L11.5 0.0998535Z"
             vectorEffect="non-scaling-stroke"
@@ -258,10 +258,10 @@ function PencilIllustration({
           {/* Graphite tip */}
           <path
             className={cn(
-              'transition-all',
-              activeId === 'graphite'
-                ? 'fill-stone-600 stroke-stone-600'
-                : 'fill-yellow-600 stroke-yellow-600',
+              "transition-all",
+              activeId === "graphite"
+                ? "fill-stone-600 stroke-stone-600"
+                : "fill-yellow-600 stroke-yellow-600",
             )}
             d="M11.5 0.0998535L14.25 13.5999L11.5 17.0999L8.75 13.5999L11.5 0.0998535Z"
             vectorEffect="non-scaling-stroke"
@@ -270,12 +270,12 @@ function PencilIllustration({
           {/* Body */}
           <g
             className={cn(
-              'transition-all',
-              activeId === 'wax' ||
-                activeId === 'lacquer' ||
-                activeId === 'glue'
-                ? 'fill-stone-300 stroke-stone-600'
-                : 'fill-yellow-400 stroke-yellow-600',
+              "transition-all",
+              activeId === "wax" ||
+                activeId === "lacquer" ||
+                activeId === "glue"
+                ? "fill-stone-300 stroke-stone-600"
+                : "fill-yellow-400 stroke-yellow-600",
             )}
           >
             <path
@@ -295,10 +295,10 @@ function PencilIllustration({
           {/* Eraser */}
           <rect
             className={cn(
-              'transition-all',
-              activeId === 'eraser'
-                ? 'fill-stone-500 stroke-stone-500'
-                : 'fill-yellow-600 stroke-yellow-600',
+              "transition-all",
+              activeId === "eraser"
+                ? "fill-stone-500 stroke-stone-500"
+                : "fill-yellow-600 stroke-yellow-600",
             )}
             x="2.5"
             y="503.1"
@@ -311,10 +311,10 @@ function PencilIllustration({
           {/* Ferrule */}
           <g
             className={cn(
-              'transition-all',
-              activeId === 'ferrule'
-                ? 'fill-stone-200 stroke-stone-600'
-                : 'fill-yellow-100 stroke-yellow-600',
+              "transition-all",
+              activeId === "ferrule"
+                ? "fill-stone-200 stroke-stone-600"
+                : "fill-yellow-100 stroke-yellow-600",
             )}
           >
             <rect
@@ -378,19 +378,19 @@ function PencilIllustration({
             <div
               key={hs.id}
               className={cn(
-                'absolute group flex gap-2 items-center pointer-events-none',
+                "absolute group flex gap-2 items-center pointer-events-none",
 
-                isMirrored ? 'right-0' : 'left-0',
+                isMirrored ? "right-0" : "left-0",
               )}
               style={{ top: hs.top }}
             >
               <svg
                 className={cn(
-                  'w-24 h-px stroke-1 fill-none overflow-visible transition-colors',
-                  isActive ? 'stroke-stone-800' : 'stroke-yellow-600',
-                  isMirrored ? 'order-2 -scale-x-100' : '',
-                  part.id === 'graphite' && '-scale-y-100',
-                  part.id === 'cedar' && '-scale-y-100',
+                  "w-24 h-px stroke-1 fill-none overflow-visible transition-colors",
+                  isActive ? "stroke-stone-800" : "stroke-yellow-600",
+                  isMirrored ? "order-2 -scale-x-100" : "",
+                  part.id === "graphite" && "-scale-y-100",
+                  part.id === "cedar" && "-scale-y-100",
                 )}
                 viewBox="0 0 120 1"
               >
@@ -403,8 +403,8 @@ function PencilIllustration({
               >
                 <span
                   className={cn(
-                    'inline-block font-semibold text-base leading-none tracking-tight transition-all',
-                    isActive ? 'text-stone-800' : 'text-yellow-600 font-normal',
+                    "inline-block font-semibold text-base leading-none tracking-tight transition-all",
+                    isActive ? "text-stone-800" : "text-yellow-600 font-normal",
                   )}
                 >
                   {part.label}
@@ -422,14 +422,14 @@ function PencilIllustration({
 
 const TIMESTAMP = {
   date: new Date()
-    .toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
+    .toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     })
     .toUpperCase(),
   time: new Date()
-    .toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+    .toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })
     .toUpperCase(),
 };
 
@@ -443,15 +443,15 @@ function Receipt({ part }: { part: PencilPart }) {
           initial={{ opacity: 0, y: 200, rotate: 0 }}
           animate={{ opacity: 1, y: 0, rotate: 1 }}
           exit={{ opacity: 0, y: -200, rotate: 2 }}
-          transition={{ type: 'spring', visualDuration: 0.3, bounce: 0 }}
+          transition={{ type: "spring", visualDuration: 0.3, bounce: 0 }}
           style={{
             WebkitMaskImage: `
               conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg),
               conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg)
             `,
-            WebkitMaskSize: '24px 51%, 24px 51%',
-            WebkitMaskPosition: 'bottom, top',
-            WebkitMaskRepeat: 'repeat-x',
+            WebkitMaskSize: "24px 51%, 24px 51%",
+            WebkitMaskPosition: "bottom, top",
+            WebkitMaskRepeat: "repeat-x",
           }}
           className="relative bg-yellow-100 text-yellow-800 font-mono w-full flex flex-col h-full"
         >
@@ -475,9 +475,9 @@ function Receipt({ part }: { part: PencilPart }) {
           {/* Items Section */}
           <div className="grow px-8 overflow-hidden relative my-6">
             <motion.ul
-              animate={{ y: ['0%', '-50%'] }}
+              animate={{ y: ["0%", "-50%"] }}
               transition={{
-                ease: 'linear',
+                ease: "linear",
                 duration: part.receiptItems.length * 2,
                 repeat: Infinity,
               }}
@@ -490,7 +490,7 @@ function Receipt({ part }: { part: PencilPart }) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
                     delay: i * 0.03,
-                    type: 'spring',
+                    type: "spring",
                     visualDuration: 0.3,
                     bounce: 0,
                   }}
@@ -522,7 +522,7 @@ function Receipt({ part }: { part: PencilPart }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function PencilPriceReceipt() {
-  const [activeId, setActiveId] = useState<string>('graphite');
+  const [activeId, setActiveId] = useState<string>("graphite");
   const activePart =
     PENCIL_PARTS.find((p) => p.id === activeId) ?? PENCIL_PARTS[0];
 

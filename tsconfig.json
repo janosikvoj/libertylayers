@@ -11,16 +11,16 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -28,7 +28,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
-, "src/content/page.mdx", "src/app/(subpages)/articles/_(articles)/economic-calculation/page.mdx"  ],
-  "exclude": ["node_modules"]
+    "**/*.mts",
+    "src/content/page.mdx",
+    "src/app/(subpages)/articles/_(articles)/economic-calculation/page.mdx",
+  ],
+  "exclude": ["node_modules"],
 }

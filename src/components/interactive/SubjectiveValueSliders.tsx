@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Slider } from '@base-ui/react/slider';
-import { Popover } from '@base-ui/react/popover';
-import Pip, { PipCorners } from '../brand/Pip';
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Slider } from "@base-ui/react/slider";
+import { Popover } from "@base-ui/react/popover";
+import Pip, { PipCorners } from "../brand/Pip";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -21,47 +21,47 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    id: 'coffee',
-    label: 'A cup of coffee',
+    id: "coffee",
+    label: "A cup of coffee",
     others: [
-      { value: 8, label: 'Farmer, Ethiopia' },
-      { value: 35, label: 'Retiree, 83' },
-      { value: 67, label: 'Night shift nurse' },
-      { value: 85, label: 'New parent, 6 weeks in' },
-      { value: 97, label: 'Stranded traveller' },
+      { value: 8, label: "Farmer, Ethiopia" },
+      { value: 35, label: "Retiree, 83" },
+      { value: 67, label: "Night shift nurse" },
+      { value: 85, label: "New parent, 6 weeks in" },
+      { value: 97, label: "Stranded traveller" },
     ],
   },
   {
-    id: 'hour',
-    label: 'One free hour',
+    id: "hour",
+    label: "One free hour",
     others: [
-      { value: 11, label: 'Retired academic' },
-      { value: 40, label: 'Gap year, backpacking' },
-      { value: 68, label: 'Freelance designer' },
-      { value: 88, label: 'PhD student, 3 days to deadline' },
-      { value: 97, label: 'Palliative care patient' },
+      { value: 11, label: "Retired academic" },
+      { value: 40, label: "Gap year, backpacking" },
+      { value: 68, label: "Freelance designer" },
+      { value: 88, label: "PhD student, 3 days to deadline" },
+      { value: 97, label: "Palliative care patient" },
     ],
   },
   {
-    id: 'silence',
-    label: 'Ten minutes of silence',
+    id: "silence",
+    label: "Ten minutes of silence",
     others: [
-      { value: 5, label: 'Meditation teacher' },
-      { value: 28, label: 'Open-plan office worker' },
-      { value: 55, label: 'Parent of three under five' },
-      { value: 80, label: 'Chronic tinnitus sufferer' },
-      { value: 96, label: 'Frontline soldier' },
+      { value: 5, label: "Meditation teacher" },
+      { value: 28, label: "Open-plan office worker" },
+      { value: 55, label: "Parent of three under five" },
+      { value: 80, label: "Chronic tinnitus sufferer" },
+      { value: 96, label: "Frontline soldier" },
     ],
   },
   {
-    id: 'stranger',
-    label: 'A kind word from a stranger',
+    id: "stranger",
+    label: "A kind word from a stranger",
     others: [
-      { value: 4, label: 'Popular influencer' },
-      { value: 22, label: 'Confident extrovert' },
-      { value: 58, label: 'Long-haul trucker, day 9' },
-      { value: 83, label: 'Grieving widow, first outing' },
-      { value: 99, label: 'Survivor, day of discharge' },
+      { value: 4, label: "Popular influencer" },
+      { value: 22, label: "Confident extrovert" },
+      { value: 58, label: "Long-haul trucker, day 9" },
+      { value: 83, label: "Grieving widow, first outing" },
+      { value: 99, label: "Survivor, day of discharge" },
     ],
   },
 ];
@@ -78,14 +78,14 @@ function PersonaPip({ persona, index }: { persona: Persona; index: number }) {
         y: -16,
         transition: {
           delay: index * 0.02,
-          type: 'spring',
+          type: "spring",
           visualDuration: 0.2,
           bounce: 0,
         },
       }}
       transition={{
         delay: index * 0.04,
-        type: 'spring',
+        type: "spring",
         visualDuration: 0.5,
         bounce: 0.2,
       }}
@@ -149,7 +149,7 @@ function SliderRow({
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          type: 'spring',
+          type: "spring",
           visualDuration: 0.55,
           bounce: 0.1,
         }}
@@ -206,7 +206,7 @@ export default function SubjectiveValueSliders() {
     <div className="mx-16 max-w-6xl w-screen">
       <motion.div
         layout
-        transition={{ type: 'spring', visualDuration: 0.5, bounce: 0.15 }}
+        transition={{ type: "spring", visualDuration: 0.5, bounce: 0.15 }}
         className="relative px-24 py-16 flex flex-col gap-12 bg-yellow-300"
       >
         <PipCorners />
@@ -214,10 +214,10 @@ export default function SubjectiveValueSliders() {
           <motion.div
             key={item.id}
             layout
-            initial={{ opacity: 0, clipPath: 'inset(0% -20% 100% -20%)' }}
-            animate={{ opacity: 1, clipPath: 'inset(0% -20% 0% -20%)' }}
+            initial={{ opacity: 0, clipPath: "inset(0% -20% 100% -20%)" }}
+            animate={{ opacity: 1, clipPath: "inset(0% -20% 0% -20%)" }}
             transition={{
-              type: 'spring',
+              type: "spring",
               visualDuration: 0.55,
               bounce: 0.1,
               opacity: { duration: 0.5 },

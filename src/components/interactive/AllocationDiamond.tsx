@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback } from "react";
 import {
   motion,
   useMotionValue,
   useTransform,
   MotionValue,
-} from 'motion/react';
-import Pip, { PipCorners } from '../brand/Pip';
-import { cn } from '@/lib/utils';
+} from "motion/react";
+import Pip, { PipCorners } from "../brand/Pip";
+import { cn } from "@/lib/utils";
 
 // ─── Math ─────────────────────────────────────────────────────────────────────
 
@@ -25,32 +25,32 @@ function CornerLabel({
 }: {
   label: string;
   val: MotionValue<number>;
-  corner: 'tl' | 'tr' | 'bl' | 'br';
+  corner: "tl" | "tr" | "bl" | "br";
 }) {
   const indicatorHeightVal = useTransform(val, (v) => `${v * 1.41}%`);
   const fontWeight = useTransform(val, [0, 100], [100, 700]);
   return (
     <div
       className={cn(
-        'absolute size-1/2 select-none pointer-events-none overflow-hidden',
-        corner === 'tl' && 'top-0 left-0',
-        corner === 'tr' && 'top-0 right-0',
-        corner === 'bl' && 'bottom-0 left-0',
-        corner === 'br' && 'bottom-0 right-0',
+        "absolute size-1/2 select-none pointer-events-none overflow-hidden",
+        corner === "tl" && "top-0 left-0",
+        corner === "tr" && "top-0 right-0",
+        corner === "bl" && "bottom-0 left-0",
+        corner === "br" && "bottom-0 right-0",
       )}
     >
       <motion.div
         className={cn(
-          'absolute w-[141%] text-yellow-600',
+          "absolute w-[141%] text-yellow-600",
 
-          corner === 'tl' &&
-            'origin-bottom right-0 bottom-0 -rotate-45 translate-x-1/2 bg-[repeating-linear-gradient(to_top,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]',
-          corner === 'tr' &&
-            'origin-bottom left-0 bottom-0 rotate-45 -translate-x-1/2 bg-[repeating-linear-gradient(to_top,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]',
-          corner === 'bl' &&
-            'origin-top right-0 top-0 rotate-45 translate-x-1/2 bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]',
-          corner === 'br' &&
-            'origin-top left-0 top-0 -rotate-45 -translate-x-1/2 bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]',
+          corner === "tl" &&
+            "origin-bottom right-0 bottom-0 -rotate-45 translate-x-1/2 bg-[repeating-linear-gradient(to_top,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]",
+          corner === "tr" &&
+            "origin-bottom left-0 bottom-0 rotate-45 -translate-x-1/2 bg-[repeating-linear-gradient(to_top,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]",
+          corner === "bl" &&
+            "origin-top right-0 top-0 rotate-45 translate-x-1/2 bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]",
+          corner === "br" &&
+            "origin-top left-0 top-0 -rotate-45 -translate-x-1/2 bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)]",
         )}
         style={{
           height: indicatorHeightVal,
@@ -58,22 +58,22 @@ function CornerLabel({
       />
       <span
         className={cn(
-          'absolute text-stone-800 m-12 font-semibold text-base tracking-tight',
-          corner === 'tl' && 'top-0 left-0',
-          corner === 'tr' && 'top-0 right-0',
-          corner === 'bl' && 'bottom-0 left-0',
-          corner === 'br' && 'bottom-0 right-0',
+          "absolute text-stone-800 m-12 font-semibold text-base tracking-tight",
+          corner === "tl" && "top-0 left-0",
+          corner === "tr" && "top-0 right-0",
+          corner === "bl" && "bottom-0 left-0",
+          corner === "br" && "bottom-0 right-0",
         )}
       >
-        {label + ' '}
+        {label + " "}
       </span>
       <motion.span
         className={cn(
-          'absolute text-yellow-600 font-mono text-8xl m-8 mx-10',
-          corner === 'tl' && 'bottom-0 right-0',
-          corner === 'tr' && 'bottom-0 left-0',
-          corner === 'bl' && 'top-0 right-0',
-          corner === 'br' && 'top-0 left-0',
+          "absolute text-yellow-600 font-mono text-8xl m-8 mx-10",
+          corner === "tl" && "bottom-0 right-0",
+          corner === "tr" && "bottom-0 left-0",
+          corner === "bl" && "top-0 right-0",
+          corner === "br" && "top-0 left-0",
         )}
         style={{ fontWeight: fontWeight }}
       >
@@ -126,11 +126,11 @@ export default function AllocationPad() {
       const move = (me: MouseEvent) =>
         updateFromPointer(me.clientX, me.clientY);
       const up = () => {
-        window.removeEventListener('mousemove', move);
-        window.removeEventListener('mouseup', up);
+        window.removeEventListener("mousemove", move);
+        window.removeEventListener("mouseup", up);
       };
-      window.addEventListener('mousemove', move);
-      window.addEventListener('mouseup', up);
+      window.addEventListener("mousemove", move);
+      window.addEventListener("mouseup", up);
     },
     [updateFromPointer],
   );
@@ -147,11 +147,11 @@ export default function AllocationPad() {
         }
       };
       const end = () => {
-        window.removeEventListener('touchmove', move);
-        window.removeEventListener('touchend', end);
+        window.removeEventListener("touchmove", move);
+        window.removeEventListener("touchend", end);
       };
-      window.addEventListener('touchmove', move, { passive: false });
-      window.addEventListener('touchend', end);
+      window.addEventListener("touchmove", move, { passive: false });
+      window.addEventListener("touchend", end);
     },
     [updateFromPointer],
   );
@@ -171,7 +171,7 @@ export default function AllocationPad() {
         <div
           ref={padRef}
           className="relative w-full max-w-[75vh] aspect-square cursor-crosshair select-none"
-          style={{ touchAction: 'none' }}
+          style={{ touchAction: "none" }}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >

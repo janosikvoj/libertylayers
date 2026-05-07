@@ -1,48 +1,48 @@
-'use client';
-import AnarchyIsOrder from '@/components/brand/AnarchyIsOrder';
-import LayersOfLiberty from '@/components/brand/LayersOfLiberty';
-import { AnimatePresence, motion } from 'motion/react';
+"use client";
+import AnarchyIsOrder from "@/components/brand/AnarchyIsOrder";
+import LayersOfLiberty from "@/components/brand/LayersOfLiberty";
+import { AnimatePresence, motion } from "motion/react";
 
 const QUOTES = [
   {
-    text: 'Socialism is an alternative to capitalism as potassium cyanide is an alternative to water.',
-    author: 'Ludwig von Mises',
+    text: "Socialism is an alternative to capitalism as potassium cyanide is an alternative to water.",
+    author: "Ludwig von Mises",
   },
   {
-    text: 'The state is that great fiction by which everyone tries to live at the expense of everyone else.',
-    author: 'Frederic Bastiat',
+    text: "The state is that great fiction by which everyone tries to live at the expense of everyone else.",
+    author: "Frederic Bastiat",
   },
   {
-    text: 'Human beings are born with different capacities. If they are free, they are not equal. And if they are equal, they are not free.',
-    author: 'Aleksandr Solzhenitsyn',
+    text: "Human beings are born with different capacities. If they are free, they are not equal. And if they are equal, they are not free.",
+    author: "Aleksandr Solzhenitsyn",
   },
   {
-    text: 'When plunder becomes a way of life for a group of men in a society, over the course of time they create for themselves a legal system that authorizes it and a moral code that glorifies it.',
-    author: 'Frédéric Bastiat',
+    text: "When plunder becomes a way of life for a group of men in a society, over the course of time they create for themselves a legal system that authorizes it and a moral code that glorifies it.",
+    author: "Frédéric Bastiat",
   },
   {
-    text: 'As long as people believe in government, wars will never end.',
-    author: 'Larken Rose',
+    text: "As long as people believe in government, wars will never end.",
+    author: "Larken Rose",
   },
   {
     text: 'I have never understood why it is "greed" to want to keep the money you have earned but not greed to want to take somebody elses money.',
-    author: 'Thomas Sowell',
+    author: "Thomas Sowell",
   },
   {
     text: 'It is easy to be conspicuously "compassionate" if others are being forced to pay the cost.',
-    author: 'Murray N. Rothbard',
+    author: "Murray N. Rothbard",
   },
   {
-    text: 'War is Mass Murder, Conscription is Slavery, Taxation is Robbery.',
-    author: 'Murray N. Rothbard',
+    text: "War is Mass Murder, Conscription is Slavery, Taxation is Robbery.",
+    author: "Murray N. Rothbard",
   },
   {
-    text: 'Every step which leads from capitalism toward planning is necessarily a step nearer to absolutism and dictatorship.',
-    author: 'Ludwig von Mises',
+    text: "Every step which leads from capitalism toward planning is necessarily a step nearer to absolutism and dictatorship.",
+    author: "Ludwig von Mises",
   },
   {
-    text: 'As government expands, liberty contracts.',
-    author: 'Ronald Reagan',
+    text: "As government expands, liberty contracts.",
+    author: "Ronald Reagan",
   },
 ];
 
@@ -96,11 +96,11 @@ export default function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.6 }}
-                style={{ filter: 'url(#stamp)' }}
+                style={{ filter: "url(#stamp)" }}
                 className="relative max-w-5xl text-6xl text-center font-semibold tracking-tighter text-balance text-stone-900"
               >
                 <span
-                  style={{ filter: 'url(#stamp)' }}
+                  style={{ filter: "url(#stamp)" }}
                   className="absolute bottom-0 left-0 translate-y-full px-[0.1em] leading-none w-fit font-mono font-bold outline-6 uppercase text-6xl tracking-tighter -rotate-6 rounded-sm text-yellow-600 pointer-events-none"
                 >
                   {`¤ ${currentIndex + 1}`}
@@ -133,7 +133,7 @@ export default function LandingPage() {
   );
 }
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 interface CensoredProps {
   children: string;
@@ -166,7 +166,7 @@ const CensoredSegment: React.FC<{ segment: string; onReveal: () => void }> = ({
         className="absolute inset-0 bg-stone-900 origin-left"
         initial={{ scaleX: 1 }}
         animate={{ scaleX: isRevealed ? 0 : 1 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
       {segment}
     </span>
@@ -175,7 +175,7 @@ const CensoredSegment: React.FC<{ segment: string; onReveal: () => void }> = ({
 
 const Censored: React.FC<CensoredProps> = ({ children, onComplete }) => {
   const segments = splitText(children);
-  const wordCount = segments.filter((s) => s.trim() !== '').length;
+  const wordCount = segments.filter((s) => s.trim() !== "").length;
 
   const [revealedCount, setRevealedCount] = useState(0);
 
@@ -189,7 +189,7 @@ const Censored: React.FC<CensoredProps> = ({ children, onComplete }) => {
   return (
     <>
       {segments.map((segment, i) => {
-        if (segment.trim() === '') {
+        if (segment.trim() === "") {
           return <span key={i}>{segment}</span>;
         }
         return (
