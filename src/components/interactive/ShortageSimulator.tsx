@@ -1,11 +1,16 @@
 "use client";
 
 import { useState, useRef, useMemo } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  LayoutGroup,
+  MotionConfig,
+} from "motion/react";
 import { Popover } from "@base-ui/react/popover";
 import Pip, { PipCorners } from "../brand/Pip";
 import { cn } from "@/lib/utils";
-import { Slider } from "@base-ui/react";
+import { Radio, RadioGroup, Slider } from "@base-ui/react";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -37,63 +42,53 @@ const BUYERS: { id: string; label: string; maxPrice: number }[] = [
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type SellerState = "selling" | "surplus" | "under-produced" | "high-cost";
-type BuyerState = "buying" | "shortage" | "budget-strained" | "low-value";
+type GroupMeta = { label: string; desc: string; active: boolean };
+type SellerState = "selling" | "surplus" | "underProduced" | "highCost";
+type BuyerState = "buying" | "shortage" | "budgetStrained" | "lowValue";
 
-const PIP_COLOR: Record<SellerState | BuyerState, string> = {
-  selling: "stroke-stone-700",
-  buying: "stroke-yellow-600",
-  surplus: "stroke-yellow-400",
-  shortage: "stroke-stone-400",
-  "budget-strained": "stroke-yellow-300",
-  "under-produced": "stroke-stone-300",
-  "high-cost": "stroke-stone-200",
-  "low-value": "stroke-yellow-200",
-};
-
-const GROUP_META: Record<
-  SellerState | BuyerState,
-  { label: string; desc: string; accent: "stone" | "yellow" | false }
-> = {
+const SELLER_META: Record<SellerState, GroupMeta> = {
   selling: {
-    label: "Selling",
-    desc: "Min price met — matched with a buyer",
-    accent: false,
+    label: "Trading",
+    desc: "Found a buyer at an acceptable price",
+    active: true,
   },
   surplus: {
-    label: "Excess Supply",
-    desc: "Willing at floor price but no buyer remains",
-    accent: "yellow",
+    label: "No Buyers Left",
+    desc: "Willing to sell, but all buyers are already matched",
+    active: false,
   },
-  "under-produced": {
-    label: "Under-Produced",
-    desc: "Won't sell below ceiling — priced out",
-    accent: "stone",
+  underProduced: {
+    label: "Priced Out",
+    desc: "The price cap is below what they need to cover costs",
+    active: false,
   },
-  "high-cost": {
-    label: "High-Cost Producer",
-    desc: "Min price above effective price — not yet competitive",
-    accent: false,
+  highCost: {
+    label: "Too Expensive",
+    desc: "Their costs are too high to compete at the current price",
+    active: false,
   },
+};
+
+const BUYER_META: Record<BuyerState, GroupMeta> = {
   buying: {
-    label: "Buying",
-    desc: "Max price met — matched with a seller",
-    accent: false,
+    label: "Trading",
+    desc: "Found a seller at an acceptable price",
+    active: true,
   },
   shortage: {
-    label: "Excess Demand",
-    desc: "Willing to pay but no seller available",
-    accent: "stone",
+    label: "No Sellers Left",
+    desc: "Willing to buy, but all sellers are already matched",
+    active: false,
   },
-  "budget-strained": {
-    label: "Budget-Strained",
-    desc: "Could afford equilibrium — floor pushed price too high",
-    accent: "yellow",
+  budgetStrained: {
+    label: "Priced Out",
+    desc: "The price floor pushed the price above their budget",
+    active: false,
   },
-  "low-value": {
-    label: "Low-Value Consumer",
-    desc: "Max price below effective price — priced out",
-    accent: false,
+  lowValue: {
+    label: "Can't Afford It",
+    desc: "The price was always above what they're able to pay",
+    active: false,
   },
 };
 
@@ -101,30 +96,41 @@ const GROUP_META: Record<
 
 function PersonPip({
   label,
-  state,
+  active,
   price,
-  priceLabel,
+  isSeller,
 }: {
   label: string;
-  state: SellerState | BuyerState;
+  active: boolean;
   price: number;
-  priceLabel: "min" | "max";
+  isSeller: boolean;
 }) {
+  const ratio = 0.1 + (0.9 - 0.1) * (1 - price);
+
   return (
-    <motion.div layout="position" layoutId={label}>
+    <motion.div
+      layout="position"
+      layoutId={label}
+      transition={{ type: "spring", visualDuration: 0.6, bounce: 0.1 }}
+    >
       <Popover.Root>
         <Popover.Trigger
           openOnHover
           className="group pointer-events-auto flex items-center justify-center p-1"
           onPointerDown={(e) => e.stopPropagation()}
-        >
-          <Pip
-            className={cn(
-              "h-6 transition-colors duration-200 group-data-popup-open:scale-125",
-              PIP_COLOR[state],
-            )}
-          />
-        </Popover.Trigger>
+          nativeButton={false}
+          render={
+            <Pip
+              ratio={ratio}
+              className={cn(
+                "h-8 transition-all duration-200 group-data-popup-open:scale-125",
+                isSeller
+                  ? cn("stroke-yellow-700", active && "fill-yellow-700")
+                  : cn("stroke-stone-600", active && "fill-stone-600"),
+              )}
+            />
+          }
+        />
         <Popover.Portal>
           <Popover.Positioner sideOffset={6}>
             <Popover.Popup className="origin-(--transform-origin) bg-yellow-100 px-3 py-2 transition-[transform,scale,opacity] data-ending-style:scale-90 data-ending-style:opacity-0 data-starting-style:scale-90 data-starting-style:opacity-0 z-50 flex flex-col gap-1">
@@ -132,7 +138,7 @@ function PersonPip({
                 {label}
               </Popover.Title>
               <p className="font-mono text-[10px] text-stone-400 tracking-wide">
-                {priceLabel === "min" ? "Min price" : "Max price"}:{" "}
+                {isSeller ? "Min" : "Max"} price:{" "}
                 <span className="text-stone-600">
                   {(price * 100).toFixed(0)}
                 </span>
@@ -147,64 +153,60 @@ function PersonPip({
 
 // ─── Group ────────────────────────────────────────────────────────────────────
 
+const MotionRadioRoot = motion(Radio.Root);
+
 function Group({
-  stateKey,
+  meta,
+  value,
+  setSelected,
+  isSeller,
   items,
 }: {
-  stateKey: SellerState | BuyerState;
-  items: {
-    id: string;
-    label: string;
-    state: SellerState | BuyerState;
-    price: number;
-    priceLabel: "min" | "max";
-  }[];
+  meta: GroupMeta;
+  value: SellerState | BuyerState;
+  setSelected: (value: SellerState | BuyerState) => void;
+  isSeller: boolean;
+  items: { id: string; label: string; price: number }[];
 }) {
-  const meta = GROUP_META[stateKey];
   if (!meta) return null;
-  const { label, desc, accent } = meta;
+  const { label, desc } = meta;
 
   return (
-    <div className="p-8 flex flex-col gap-2 bg-yellow-200">
-      <div className="flex flex-col gap-0.5">
-        <span
-          className={cn(
-            "font-mono text-[9px] uppercase tracking-[0.2em]",
-            accent === "stone"
-              ? "text-stone-500"
-              : accent === "yellow"
-                ? "text-yellow-600"
-                : "text-stone-400",
-          )}
-        >
-          {label}
-          <span className="ml-2 opacity-50">{items.length}</span>
-        </span>
-        <span className="font-mono text-[9px] text-stone-400 tracking-wide">
-          {desc}
-        </span>
-      </div>
+    <MotionRadioRoot
+      value={value}
+      onHoverStart={() => setSelected(value)}
+      layout
+      className={cn(
+        "group relative p-4 flex flex-col justify-between bg-yellow-200 overflow-hidden",
+        isSeller ? "text-yellow-700" : "text-stone-500",
+      )}
+    >
+      <motion.span layout className="text-base tracking-tight">
+        {label}
+        <span className="ml-1.5 font-mono opacity-65">{items.length}</span>
+      </motion.span>
 
-      {/* Container always rendered — min-h keeps it visible when empty */}
-      <div className="flex flex-wrap gap-1 min-h-8 rounded-sm transition-colors duration-300">
+      <motion.div
+        layout
+        className="z-10 grow flex flex-wrap content-center justify-center gap-1"
+      >
         <AnimatePresence mode="popLayout">
-          {items.map((item, i) => (
+          {items.map((item) => (
             <PersonPip
               key={item.id}
               label={item.label}
-              state={item.state}
+              active={meta.active}
               price={item.price}
-              priceLabel={item.priceLabel}
+              isSeller={isSeller}
             />
           ))}
         </AnimatePresence>
-        {items.length === 0 && (
-          <span className="font-mono text-[9px] text-stone-300 self-center">
-            —
-          </span>
-        )}
+      </motion.div>
+
+      <div className="absolute top-0 left-0 w-full min-h-2/3 p-4 bg-linear-0 to-yellow-100 via-yellow-100 opacity-0 group-data-checked:opacity-100 -translate-y-4 group-data-checked:translate-y-0 transition-all duration-700 group-data-checked:duration-200">
+        <p className="text-sm tracking-wide">{desc}</p>
       </div>
-    </div>
+    </MotionRadioRoot>
   );
 }
 
@@ -212,9 +214,9 @@ function Group({
 
 export default function ShortageSimulator() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [hasDragged, setHasDragged] = useState(false);
 
   const [value, setValue] = useState([20, 80]);
+  const [selected, setSelected] = useState<string>("selling");
 
   const floorVal = value[0]; // 0–100
   const ceilingVal = value[1]; // 0–100
@@ -277,25 +279,26 @@ export default function ShortageSimulator() {
 
   return (
     <div className="mx-16 max-w-6xl w-screen">
-      <div className="relative grid grid-cols-2">
-        <PipCorners />
+      <div className="relative grid grid-cols-2 gap-px bg-yellow-600">
+        <PipCorners className="z-10" />
 
         {/* ── Left: Graph ── */}
-        <div className="flex flex-col gap-2 bg-yellow-300 p-16 pr-8">
-          <div className="flex flex-row gap-2">
+        <div className="flex flex-col gap-px">
+          <div className="flex flex-row gap-px">
             {/* Y legend*/}
             <div
               className={cn(
-                "flex justify-between text-yellow-600 text-2xl font-extralight uppercase [writing-mode:vertical-rl] rotate-180 self-stretch",
+                "bg-yellow-300 p-4 pr-12 flex justify-between text-yellow-600 text-2xl font-extralight uppercase [writing-mode:vertical-rl] rotate-180 self-stretch",
               )}
             >
               <span>Low</span>
               <span>Price</span>
               <span>High</span>
             </div>
-            <div ref={containerRef} className="relative w-full aspect-3/4">
-              <div className="absolute inset-0 border-b border-l  border-yellow-600" />
-
+            <div
+              ref={containerRef}
+              className="relative w-full aspect-3/4 bg-yellow-300"
+            >
               {/* Supply/demand curves + shortage/surplus markers */}
               <svg
                 className="absolute inset-0 size-full pointer-events-none"
@@ -336,12 +339,12 @@ export default function ShortageSimulator() {
               </svg>
 
               <div
-                className="absolute top-0 w-full bg-[repeating-linear-gradient(to_bottom,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)] text-stone-500/40"
+                className="absolute top-0 w-full bg-stone-500/20"
                 style={{ height: `${100 - ceilingVal}%` }}
               />
 
               <div
-                className="absolute bottom-0 w-full bg-[repeating-linear-gradient(to_top,currentColor_0px,currentColor_1px,transparent_1px,transparent_6px)] text-yellow-700/40"
+                className="absolute bottom-0 w-full bg-yellow-700/20"
                 style={{ height: `${floorVal}%` }}
               />
 
@@ -355,12 +358,12 @@ export default function ShortageSimulator() {
                 thumbAlignment="edge-client-only"
               >
                 <Slider.Control className="flex size-full touch-none items-center select-none">
-                  <Slider.Track className="size-full">
+                  <Slider.Track className="size-full hover:cursor-pointer">
                     <Slider.Thumb
                       index={0}
                       aria-label="Floor"
                       className={cn(
-                        "w-full h-px bg-yellow-700 text-yellow-700 select-none has-focus-visible:outline-1 has-focus-visible:outline-yellow-700",
+                        "w-full h-px hover:cursor-pointer bg-yellow-700 text-yellow-700 select-none has-focus-visible:outline-1 has-focus-visible:outline-yellow-700",
                         "flex justify-start items-end px-4",
                       )}
                     >
@@ -376,7 +379,7 @@ export default function ShortageSimulator() {
                       index={1}
                       aria-label="Ceiling"
                       className={cn(
-                        "w-full h-px bg-stone-500 text-stone-500 select-none has-focus-visible:outline-1 has-focus-visible:outline-stone-500",
+                        "w-full h-px hover:cursor-pointer bg-stone-500 text-stone-500 select-none has-focus-visible:outline-1 has-focus-visible:outline-stone-500",
                         "flex justify-start items-start px-4",
                       )}
                     >
@@ -435,88 +438,86 @@ export default function ShortageSimulator() {
           </div>
 
           {/* X legend*/}
-          <div
-            className={cn(
-              "flex justify-between pl-10 items-end text-yellow-600 text-2xl font-extralight uppercase",
-            )}
-          >
-            <span>0</span>
-            <span>Quantity</span>
-            <span>Max</span>
+          <div className="grow flex gap-px">
+            <div className="bg-yellow-300 w-24" />
+            <div
+              className={cn(
+                "bg-yellow-300 grow flex justify-between p-4 items-start text-yellow-600 text-2xl font-extralight uppercase",
+              )}
+            >
+              <span>0</span>
+              <span>Quantity</span>
+              <span>Max</span>
+            </div>
           </div>
         </div>
 
         {/* ── Right: Sellers + Buyers ── */}
-        {/* TODO: Change the layout to a grid with different colored blocks*/}
-        <LayoutGroup>
-          <div className="flex flex-col gap-8 p-8 bg-yellow-300">
-            <div className="relative grid grid-cols-2 gap-px grow">
-              <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold text-base tracking-tight text-stone-800 bg-yellow-300 px-2">
-                Sellers
-              </p>
-              {(
-                [
-                  "selling",
-                  "surplus",
-                  "under-produced",
-                  "high-cost",
-                ] as SellerState[]
-              ).map((key) => {
-                const groupItems = {
-                  selling: sellerGroups.selling,
-                  surplus: sellerGroups.surplus,
-                  "under-produced": sellerGroups.underProduced,
-                  "high-cost": sellerGroups.highCost,
-                }[key];
-                return (
-                  <Group
-                    key={key}
-                    stateKey={key}
-                    items={groupItems.map((s) => ({
-                      ...s,
-                      state: key as SellerState,
-                      price: s.minPrice,
-                      priceLabel: "min" as const,
-                    }))}
-                  />
-                );
-              })}
-            </div>
+        <MotionConfig
+          transition={{ type: "spring", visualDuration: 0.2, bounce: 0.1 }}
+        >
+          <LayoutGroup>
+            <RadioGroup
+              value={selected}
+              onValueChange={setSelected}
+              className="flex flex-col gap-px"
+            >
+              {/* Sellers */}
+              <motion.div layout className="grow flex gap-px">
+                <motion.div layout className="grow grid grid-cols-2 gap-px">
+                  {(
+                    Object.entries(SELLER_META) as [SellerState, GroupMeta][]
+                  ).map(([key, meta]) => (
+                    <Group
+                      key={key}
+                      value={key}
+                      setSelected={setSelected}
+                      meta={meta}
+                      isSeller={true}
+                      items={sellerGroups[key].map((s) => ({
+                        id: s.id,
+                        label: s.label,
+                        price: s.minPrice,
+                      }))}
+                    />
+                  ))}
+                </motion.div>
+                <motion.div layout className="bg-yellow-200 p-4 pr-12">
+                  <span className="text-yellow-700 text-2xl font-extralight uppercase [writing-mode:vertical-rl]">
+                    Sellers
+                  </span>
+                </motion.div>
+              </motion.div>
 
-            <div className="relative grid grid-cols-2 gap-px grow">
-              <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold text-base tracking-tight text-stone-800 bg-yellow-300 px-2">
-                Buyers
-              </p>
-              {(
-                [
-                  "buying",
-                  "shortage",
-                  "budget-strained",
-                  "low-value",
-                ] as BuyerState[]
-              ).map((key) => {
-                const groupItems = {
-                  buying: buyerGroups.buying,
-                  shortage: buyerGroups.shortage,
-                  "budget-strained": buyerGroups.budgetStrained,
-                  "low-value": buyerGroups.lowValue,
-                }[key];
-                return (
-                  <Group
-                    key={key}
-                    stateKey={key}
-                    items={groupItems.map((b) => ({
-                      ...b,
-                      state: key as BuyerState,
-                      price: b.maxPrice,
-                      priceLabel: "max" as const,
-                    }))}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        </LayoutGroup>
+              {/* Buyers */}
+              <div className="grow flex gap-px">
+                <div className="grow grid grid-cols-2 gap-px">
+                  {(
+                    Object.entries(BUYER_META) as [BuyerState, GroupMeta][]
+                  ).map(([key, meta]) => (
+                    <Group
+                      key={key}
+                      value={key}
+                      setSelected={setSelected}
+                      meta={meta}
+                      isSeller={false}
+                      items={buyerGroups[key].map((b) => ({
+                        id: b.id,
+                        label: b.label,
+                        price: b.maxPrice,
+                      }))}
+                    />
+                  ))}
+                </div>
+                <motion.div layout className="bg-yellow-200 p-4 pr-12">
+                  <span className="text-stone-500 text-2xl font-extralight uppercase [writing-mode:vertical-rl]">
+                    Buyers
+                  </span>
+                </motion.div>
+              </div>
+            </RadioGroup>
+          </LayoutGroup>
+        </MotionConfig>
       </div>
     </div>
   );

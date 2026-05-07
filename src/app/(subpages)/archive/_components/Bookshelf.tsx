@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { ScrollArea } from '@base-ui/react';
-import { Book, CATEGORY_COLORS } from '../_content/books';
-import { cn } from '@/lib/utils';
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import Pip from '@/components/brand/Pip';
+import { ScrollArea } from "@base-ui/react";
+import { Book, CATEGORY_COLORS } from "../_content/books";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { motion } from "motion/react";
+import Pip from "@/components/brand/Pip";
 
 const spineWidthFromPages = (pages: number) => {
   const min = 32,
@@ -16,7 +16,7 @@ const spineWidthFromPages = (pages: number) => {
 
 const bookHeightFromTitle = (title: string) => {
   const hash = [...title].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const heights = ['18rem', '20rem', '22rem', '24rem'];
+  const heights = ["18rem", "20rem", "22rem", "24rem"];
   return heights[hash % heights.length];
 };
 
@@ -40,7 +40,7 @@ function Bookshelf({ books }: { books: Book[] }) {
                     key={book.title + i}
                     onClick={() => setActiveIndex(isActive ? null : i)}
                     initial="idle"
-                    animate={isActive ? 'active' : 'idle'}
+                    animate={isActive ? "active" : "idle"}
                     whileHover="hovered"
                     variants={{
                       idle: {
@@ -48,11 +48,11 @@ function Bookshelf({ books }: { books: Book[] }) {
                         x: spineWidth,
                         marginInline: 0,
                       },
-                      active: { width: 256, x: 0, marginInline: '2rem' },
+                      active: { width: 256, x: 0, marginInline: "2rem" },
                       hovered: {
                         width: isActive ? 256 : spineWidth + 16,
                         x: isActive ? 0 : spineWidth,
-                        marginInline: isActive ? '2rem' : '0.5rem',
+                        marginInline: isActive ? "2rem" : "0.5rem",
                       },
                     }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -71,7 +71,7 @@ function Bookshelf({ books }: { books: Book[] }) {
                       {/* FRONT COVER */}
                       <div
                         className={cn(
-                          'absolute top-0 left-0 w-64 h-full flex flex-col gap-4 justify-between p-4',
+                          "absolute top-0 left-0 w-64 h-full flex flex-col gap-4 justify-between p-4",
                           colors.cover,
                           colors.text,
                         )}
@@ -81,7 +81,7 @@ function Bookshelf({ books }: { books: Book[] }) {
                             {book.title}
                           </h3>
                           <p className="font-mono text-xs mt-2 uppercase tracking-widest opacity-60">
-                            {book.author || 'Author Name'}
+                            {book.author || "Author Name"}
                           </p>
                         </div>
 
@@ -99,14 +99,14 @@ function Bookshelf({ books }: { books: Book[] }) {
                       {/* SPINE */}
                       <div
                         className={cn(
-                          'absolute top-0 h-full origin-right flex flex-col items-center justify-between py-4',
+                          "absolute top-0 h-full origin-right flex flex-col items-center justify-between py-4",
                           colors.spine,
                           colors.spineText,
                         )}
                         style={{
                           width: spineWidth,
                           left: -spineWidth,
-                          transform: 'rotateY(-90deg)',
+                          transform: "rotateY(-90deg)",
                         }}
                       >
                         <span className="font-mono text-xs font-semibold">
@@ -135,14 +135,14 @@ function Bookshelf({ books }: { books: Book[] }) {
       <div className="flex justify-center gap-6 mt-8">
         {(
           Object.entries(CATEGORY_COLORS) as [
-            Book['category'],
-            (typeof CATEGORY_COLORS)[Book['category']],
+            Book["category"],
+            (typeof CATEGORY_COLORS)[Book["category"]],
           ][]
         ).map(([category, colors]) => (
           <div key={category} className="flex items-center gap-2">
             <Pip
               className={cn(
-                'rotate-45 h-4 fill-current stroke-current',
+                "rotate-45 h-4 fill-current stroke-current",
                 colors.palette,
               )}
             />
