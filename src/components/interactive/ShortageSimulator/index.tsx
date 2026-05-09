@@ -8,9 +8,11 @@ import { ToggleGroup } from "@base-ui/react";
 import Group from "./Group";
 import {
   BUYER_META,
+  BUYERS,
   BuyerState,
   GroupMeta,
   SELLER_META,
+  SELLERS,
   SellerState,
 } from "./data";
 
@@ -67,7 +69,10 @@ export default function ShortageSimulator() {
                 </motion.div>
                 <motion.div layout className="bg-yellow-200 p-4 pr-12">
                   <span className="text-yellow-700 text-2xl font-extralight uppercase [writing-mode:vertical-rl]">
-                    Sellers
+                    Sellers{" "}
+                    <span className="opacity-65 font-mono">
+                      {SELLERS.length}
+                    </span>
                   </span>
                 </motion.div>
               </motion.div>
@@ -94,7 +99,10 @@ export default function ShortageSimulator() {
                 </div>
                 <motion.div layout className="bg-yellow-200 p-4 pr-12">
                   <span className="text-stone-500 text-2xl font-extralight uppercase [writing-mode:vertical-rl]">
-                    Buyers
+                    Buyers{" "}
+                    <span className="opacity-65 font-mono">
+                      {BUYERS.length}
+                    </span>
                   </span>
                 </motion.div>
               </div>

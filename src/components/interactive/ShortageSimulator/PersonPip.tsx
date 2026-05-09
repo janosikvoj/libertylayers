@@ -32,7 +32,7 @@ export default function PersonPip({
             <Pip
               ratio={ratio}
               className={cn(
-                "h-8 rotate-45 transition-all duration-200 group-data-popup-open:scale-125",
+                "size-8 rotate-45 transition-all duration-200 group-data-popup-open:scale-125",
                 isSeller
                   ? cn("stroke-yellow-700", active && "fill-yellow-700")
                   : cn("stroke-stone-600", active && "fill-stone-600"),

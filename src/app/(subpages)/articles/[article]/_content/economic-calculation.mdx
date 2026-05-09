@@ -1,15 +1,15 @@
-import Bleed from '@/components/common/Bleed';
-import SubjectiveValueSliders from '@/components/interactive/SubjectiveValueSliders';
-import AllocationDiamond from '@/components/interactive/AllocationDiamond';
-import PencilPriceReceipt from '@/components/interactive/PencilPriceReceipt';
-import ShortageSimulator from '@/components/interactive/ShortageSimulator';
+import Bleed from "@/components/common/Bleed";
+import SubjectiveValueSliders from "@/components/interactive/SubjectiveValueSliders";
+import AllocationDiamond from "@/components/interactive/AllocationDiamond";
+import PencilPriceReceipt from "@/components/interactive/PencilPriceReceipt";
+import ShortageSimulator from "@/components/interactive/ShortageSimulator";
 
 # Economic Calculation
 
 <span className="text-3xl leading-tight font-light text-yellow-800">
-  Every society must answer the same question every single day: which of the
-  infinite possible uses of this scarce resource is the most valuable one? The
-  answer is harder than it looks.
+    Every society must answer the same question every single day: which of the
+    infinite possible uses of this scarce resource is the most valuable one? The
+    answer is harder than it looks.
 </span>
 
 ## The Core Problem
@@ -51,7 +51,7 @@ Before you continue, place yourself on each scale. There are no right
 answers. When you commit, you will see where others placed theirs.
 
 <Bleed className="flex justify-center">
-  <SubjectiveValueSliders />
+    <SubjectiveValueSliders />
 </Bleed>
 
 Nobody placed them identically. This is the central fact that any economic
@@ -103,7 +103,7 @@ visceral the moment you try to act as the planner. Below is a simplified
 model: four categories, a fixed pool of resources, and a single cursor.
 
 <Bleed className="flex justify-center">
-  <AllocationDiamond />
+    <AllocationDiamond />
 </Bleed>
 
 Even in this stripped-down model, there is no obviously correct position.
@@ -140,10 +140,10 @@ The component below shows the supply chain of an ordinary pencil. Select
 any part of it.
 
 <Bleed className="flex justify-center">
-  <PencilPriceReceipt />
+    <PencilPriceReceipt />
 </Bleed>
 
-Notice the prices on the receipt: all listed as `¤ ?.??`. That blank is
+Notice the prices on the receipt: all listed as _¤ ?.??_. That blank is
 intentional. No single person — not the manufacturer or the economist —
 knows the correct price for each input in isolation.
 
@@ -164,20 +164,19 @@ and price floors. The goals — affordable housing or living wages — are
 often sympathetic.
 
 But intervening in a price does not change the underlying scarcity. **It
-changes the signal while leaving reality untouched.** A rent ceiling reduces
-the incentive to build housing and widens the gap between supply and demand
-exactly where the intervention was meant to close it.
+changes the signal while leaving reality untouched.**
 
-A minimum wage floor makes some workers better off, but makes employment
-more expensive. The cost is borne by those least visible: people who never
-get hired or lose informal work.
+Take a rental market. At equilibrium, every landlord willing to rent at the going rate finds a tenant willing to pay it. The price does the matching. Now impose a ceiling — say, rent control. Landlords whose costs exceed the cap simply withdraw: the retired couple renting a spare room, the small private landlord operating on thin margins. Supply shrinks. The tenants who remain housed are better off. But the queue of people who cannot find housing at all grows invisibly — they never appear in any statistic.
+
+A floor works the same way in reverse. A minimum housing standard sounds protective, but it prices out the cheapest units. The people who could only afford those units don't get better housing. They get none.
 
 <Bleed className="flex justify-center">
-  <ShortageSimulator />
+    <ShortageSimulator />
 </Bleed>
 
-Every override of a price carries a hidden cost: the information that price
-would have transmitted goes dark.
+Drag the ceiling down and watch who disappears first: not the institutional investor or the new-build developer, but the small landlords with the lowest costs — the ones most likely to house the people the policy was meant to protect. Drag the floor up past equilibrium and the surplus makes the problem visible from the other side: sellers willing to trade, buyers willing to pay, but the price won't let them meet.
+
+Every override carries the same hidden cost: the information that price would have transmitted goes dark.
 
 ### Invisible Waste
 
@@ -206,23 +205,17 @@ choice, and resource allocation.
 
 ## Conclusion
 
-### Limits of Markets
+### What Remains Open
 
-**!!! Writers note: Return to this later !!!**
+The calculation problem is not a defence of any particular market outcome. It is a narrower claim: that without prices, no one can know what they are giving up.
 
-Markets can produce deeply unequal outcomes. The price mechanism coordinates
-the preferences of those who have purchasing power, but is indifferent to
-those who have none.
+Inequality exists because people are not identical — in health, in talent, in circumstance. That would be true under any system. The question is whether concealing the price signal narrows those differences or simply hides them.
 
-There are also goods that markets handle poorly. Public goods like defense
-are underprovided by voluntary exchange alone. Negative externalities like
-pollution impose costs on third parties.
+Pollution, congestion, and overfishing exist where property rights are absent or unclear. The cost is real. But the response most consistent with the calculation argument is not to override the price — it is to ask why the resource has no owner, and what it would take to give it one.
 
-The calculation problem is a specific claim: _any system which suppresses
-prices loses the mechanism by which dispersed knowledge is aggregated_. The
-question is which interventions create costs that exceed their benefits.
+There are no clean answers here. But the questions have a shape: every proposed intervention has a price, paid somewhere, by someone, whether or not it appears in any budget.
 
-### An Open Question
+### The Final Question
 
 Every civilization must calculate. The question is not whether to do it,
 but how — and which signals to trust.

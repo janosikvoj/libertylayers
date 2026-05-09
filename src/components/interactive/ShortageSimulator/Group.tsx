@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import PersonPip from "./PersonPip";
 import { BuyerState, GroupMeta, SellerState } from "./data";
 
-const MotionToggle = motion(Toggle);
+const MotionToggle = motion.create(Toggle);
 
 export default function Group({
   meta,

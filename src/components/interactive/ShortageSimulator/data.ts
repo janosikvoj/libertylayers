@@ -3,27 +3,27 @@
 export const EQUILIBRIUM = 0.5;
 
 export const SELLERS: { id: string; label: string; minPrice: number }[] = [
-  { id: "s0", label: "Bakery on Korunní St", minPrice: 0.14 },
-  { id: "s1", label: "Family farm, Moravia", minPrice: 0.19 },
-  { id: "s2", label: "Mill cooperative", minPrice: 0.31 },
-  { id: "s3", label: "Artisan baker", minPrice: 0.41 },
-  { id: "s4", label: "Regional distributor", minPrice: 0.47 },
-  { id: "s5", label: "Importer, Brno", minPrice: 0.58 },
-  { id: "s6", label: "Supermarket chain", minPrice: 0.71 },
-  { id: "s7", label: "Factory outlet", minPrice: 0.79 },
+  { id: "s0", label: "Retired couple, spare room", minPrice: 0.12 },
+  { id: "s1", label: "Small private landlord", minPrice: 0.18 },
+  { id: "s2", label: "Converted family home", minPrice: 0.28 },
+  { id: "s3", label: "Cooperative housing", minPrice: 0.38 },
+  { id: "s4", label: "Mid-size property firm", minPrice: 0.46 },
+  { id: "s5", label: "New-build developer", minPrice: 0.57 },
+  { id: "s6", label: "Institutional investor", minPrice: 0.68 },
+  { id: "s7", label: "Luxury conversion", minPrice: 0.78 },
 ];
 
 export const BUYERS: { id: string; label: string; maxPrice: number }[] = [
-  { id: "b0", label: "Hospital canteen", maxPrice: 0.88 },
-  { id: "b1", label: "Restaurant owner", maxPrice: 0.76 },
-  { id: "b2", label: "School cafeteria", maxPrice: 0.66 },
-  { id: "b3", label: "Office worker", maxPrice: 0.61 },
-  { id: "b4", label: "Young family", maxPrice: 0.53 },
-  { id: "b5", label: "Night shift worker", maxPrice: 0.48 },
-  { id: "b6", label: "Corner shop", maxPrice: 0.39 },
-  { id: "b7", label: "Student, 22", maxPrice: 0.29 },
-  { id: "b8", label: "Single mother, 2 kids", maxPrice: 0.22 },
-  { id: "b9", label: "Retiree on fixed pension", maxPrice: 0.17 },
+  { id: "b0", label: "Tech company relocation", maxPrice: 0.91 },
+  { id: "b1", label: "Dual-income couple", maxPrice: 0.79 },
+  { id: "b2", label: "Young professional", maxPrice: 0.67 },
+  { id: "b3", label: "Graduate student", maxPrice: 0.58 },
+  { id: "b4", label: "Service worker, full-time", maxPrice: 0.51 },
+  { id: "b5", label: "Part-time worker", maxPrice: 0.44 },
+  { id: "b6", label: "Single parent, 1 child", maxPrice: 0.35 },
+  { id: "b7", label: "Recent immigrant", maxPrice: 0.26 },
+  { id: "b8", label: "Minimum wage worker", maxPrice: 0.19 },
+  { id: "b9", label: "Retiree on pension", maxPrice: 0.13 },
 ];
 
 // ─── Types ────────────────────────────────────────────────────────────────────
