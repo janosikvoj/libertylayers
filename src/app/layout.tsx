@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import "./globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { DossierProvider } from "@/context/DossierContext";
+import { Header } from "@/components/navigation/Header";
 
 export const metadata: Metadata = {
   title: "Liberty Layers",
@@ -20,7 +22,12 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-sans bg-stone-950">
-        <NuqsAdapter>{children}</NuqsAdapter>
+        <DossierProvider>
+          <NuqsAdapter>
+            <Header />
+            {children}
+          </NuqsAdapter>
+        </DossierProvider>
         <svg className="absolute h-0 w-0" aria-hidden="true">
           <defs>
             <filter id="stamp" x="-5%" y="-5%" width="110%" height="110%">
@@ -46,7 +53,7 @@ export default function RootLayout({
               height="6"
               patternUnits="userSpaceOnUse"
             >
-              <rect width="6" height="1" className="fill-yellow-500" />
+              <rect width="6" height="1" className="fill-stone-900" />
             </pattern>
           </defs>
 

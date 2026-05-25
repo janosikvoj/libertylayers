@@ -1,33 +1,61 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-motion";
 
 @theme {
-  --color-transparent: lab(98.6846% -1.79058 9.77662 / 0);
+    --color-transparent: lab(98.6846% -1.79058 9.77662 / 0);
 }
 
 @theme inline {
-  --font-*: initial;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --font-*: initial;
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 html {
-  @apply scroll-smooth scroll-pt-32 selection:bg-stone-900 selection:text-yellow-100;
+    @apply scroll-smooth scroll-pt-32 selection:bg-stone-900 selection:text-yellow-100;
 }
 
 body {
-  @apply bg-yellow-50 text-stone-900;
+    @apply bg-yellow-50 text-stone-900;
 }
 
 @utility prose-stone {
-  --tw-prose-quote-borders: var(--color-yellow-200);
-  --tw-prose-bullets: var(--color-yellow-500);
-  --tw-prose-hr: var(--color-yellow-300);
+    --tw-prose-quote-borders: var(--color-yellow-200);
+    --tw-prose-bullets: var(--color-yellow-500);
+    --tw-prose-hr: var(--color-yellow-300);
 }
 
 @property --nav-width {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0rem;
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 0rem;
+}
+
+@utility bg-checker {
+    background: color-mix(in srgb, currentColor 5%, transparent)
+        repeating-conic-gradient(
+            color-mix(in srgb, currentColor 90%, transparent) 0% 25%,
+            transparent 0% 50%
+        )
+        0 0 / 4px 4px;
+}
+
+/* TODO Utility */
+@theme {
+    --direction-top: "to top";
+    --direction-bottom: "to bottom";
+    --direction-left: "to left";
+    --direction-right: "to right";
+}
+
+@utility bg-stripe-* {
+    --stripe-dir: --value(--direction-*);
+    background: repeating-linear-gradient(
+        var(--stripe-dir, --default("to right")),
+        currentColor 0px,
+        currentColor 1px,
+        transparent 1px,
+        transparent 3px
+    );
 }
