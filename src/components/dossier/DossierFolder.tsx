@@ -2,6 +2,8 @@
 import AnarchyIsOrder from "@/components/brand/AnarchyIsOrder";
 import { AnimatePresence, motion } from "motion/react";
 import { useDossier } from "@/context/DossierContext";
+import { cn } from "@/lib/utils";
+import { DOSSIER_SHAPE } from "./dossier";
 
 export function DossierFolder() {
   const { stage } = useDossier();
@@ -18,7 +20,7 @@ export function DossierFolder() {
               rotateZ: -12,
               transition: { duration: 0.7, ease: "easeIn" },
             }}
-            className="w-2xs aspect-99/70 absolute bg-stone-400"
+            className={cn("absolute bg-stone-400", DOSSIER_SHAPE)}
           />
 
           {/* Front cover */}
@@ -53,7 +55,7 @@ export function DossierFolder() {
               transformStyle: "preserve-3d",
               zIndex: 2,
             }}
-            className="w-2xs aspect-99/70 absolute text-stone-800 p-4"
+            className={cn("absolute text-stone-800 p-4", DOSSIER_SHAPE)}
           >
             <svg
               aria-hidden="true"

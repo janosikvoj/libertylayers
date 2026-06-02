@@ -26,9 +26,18 @@ const CensoredSegment = ({
   const isRevealed = revealedIds.has(id);
   const originX = useMotionValue<"left" | "right">("left");
 
-  const rotate = useMemo(() => (seededRandom(id + "r") - 0.5) * 3, [id]);
-  const scaleY = useMemo(() => 0.85 + seededRandom(id + "s") * 0.3, [id]);
-  const insetBlock = useMemo(() => seededRandom(id + "i") * 0.2, [id]);
+  const rotate = useMemo(
+    () => (seededRandom(id + segment + "r") - 0.5) * 3,
+    [id, segment],
+  );
+  const scaleY = useMemo(
+    () => 0.85 + seededRandom(id + segment + "s") * 0.2,
+    [id, segment],
+  );
+  const insetBlock = useMemo(
+    () => seededRandom(id + segment + "i") * 0.2,
+    [id, segment],
+  );
 
   const wasRevealed = useRef(false);
 

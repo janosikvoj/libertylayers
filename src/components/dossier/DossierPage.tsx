@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useDossier } from "@/context/DossierContext";
+import { DOSSIER_SHAPE } from "./dossier";
 
 export function DossierPage({ children }: { children: React.ReactNode }) {
   const { stage, setStage } = useDossier();
@@ -35,14 +36,15 @@ export function DossierPage({ children }: { children: React.ReactNode }) {
       }}
       className={cn(
         "relative bg-yellow-400 text-stone-800 overflow-hidden",
-        !isOpen && "w-2xs aspect-99/70",
+        !isOpen && DOSSIER_SHAPE,
         isOpen && "pointer-events-auto",
       )}
     >
       <p
         className={cn(
           "absolute top-2 font-semibold text-nowrap right-4 transition-all duration-700",
-          !isSealed && "top-4 right-[calc(100%-3rem)] translate-x-full",
+          !isSealed &&
+            "top-4 right-[calc(100%-1.5rem)] sm:right-[calc(100%-3rem)] translate-x-full",
         )}
       >
         ¤ Liberty Layers

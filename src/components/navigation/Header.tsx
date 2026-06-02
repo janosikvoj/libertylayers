@@ -55,13 +55,16 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         className,
       )}
     >
-      <NavigationMenu.Root className="mx-12 my-4">
-        <NavigationMenu.List className="flex gap-6">
+      <NavigationMenu.Root className="mx-6 sm:mx-12 my-4">
+        <NavigationMenu.List className="flex gap-x-6 gap-y-3 flex-wrap">
           {LINKS.map((item, i) => {
             const active = isActive(item.href);
             const landingPageLinkAnimated = item.href === "/" && isLandingPage;
             return (
-              <NavigationMenu.Item key={item.title + i}>
+              <NavigationMenu.Item
+                className={cn(i === 0 && "basis-full sm:basis-auto")}
+                key={item.title + i}
+              >
                 <MotionLink
                   variants={{
                     initial: landingPageLinkAnimated

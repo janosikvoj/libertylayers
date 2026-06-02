@@ -54,7 +54,7 @@ function GlossaryPageInner() {
         <GlossaryGraph selected={selected} onSelect={handleSelect} />
       </ReactFlowProvider>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-6 pointer-events-none">
+      <div className="absolute bottom-0 mx-6 sm:mx-12 my-8 flex flex-wrap-reverse gap-x-6 gap-y-3 pointer-events-none">
         {(Object.entries(CATEGORY_BADGE) as [string, string][]).map(
           ([category, colors]) => (
             <div key={category} className="flex items-center gap-2">

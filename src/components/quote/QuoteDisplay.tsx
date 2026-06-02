@@ -49,7 +49,7 @@ export function QuoteDisplay() {
           transition={{ duration: 0.4, ease: [0.165, 0.84, 0.44, 1] }}
           className="text-yellow-800 relative text-2xl font-extralight uppercase mb-12 isolate inline-block"
         >
-          <Underline className="stroke-1" delay={0.4} duration={2}>
+          <Underline delay={0.4} duration={2}>
             {currentQuote.author}
           </Underline>
           <span className="absolute top-0 -right-1 translate-x-full text-sm font-normal text-yellow-600">{`${currentIndex + 1}/${QUOTES.length}`}</span>
@@ -67,18 +67,28 @@ export function QuoteDisplay() {
         </motion.p>
       </CensoredBrush>
       <motion.div
-        className="flex text-yellow-800 tracking-tight mt-24 gap-8 motion-preset-slide-up motion-delay-500"
+        className="flex flex-col md:flex-row text-yellow-800 tracking-tight mt-24 gap-x-8 gap-y-4 motion-preset-slide-up motion-delay-500"
         layout="position"
       >
-        <Button
-          className="group flex gap-2 hover:text-stone-800 hover:cursor-pointer transition-all hover:gap-3"
-          onClick={() => goTo(currentIndex - 1)}
-        >
-          <ArrowIcon direction="left" className="h-auto w-8 stroke-current" />
-          Previous
-        </Button>
+        <div className="md:contents order-last flex gap-8">
+          <Button
+            className="group flex gap-2 hover:text-stone-800 hover:cursor-pointer transition-all hover:gap-3"
+            onClick={() => goTo(currentIndex - 1)}
+          >
+            <ArrowIcon direction="left" className="h-auto w-8 stroke-current" />
+            Previous
+          </Button>
 
-        <div className="min-w-40 flex items-center justify-center bg-yellow-800">
+          <Button
+            className="group flex gap-2 hover:text-stone-800 hover:cursor-pointer transition-all hover:gap-3 order-last"
+            onClick={() => goTo(currentIndex + 1)}
+          >
+            Next
+            <ArrowIcon className="h-auto w-8 stroke-current" />
+          </Button>
+        </div>
+
+        <div className="min-w-40 h-6 flex items-center justify-center bg-yellow-800">
           <AnimatePresence mode="wait">
             {isRevealed ? (
               <motion.div
@@ -113,14 +123,6 @@ export function QuoteDisplay() {
             )}
           </AnimatePresence>
         </div>
-
-        <Button
-          className="group flex gap-2 hover:text-stone-800 hover:cursor-pointer transition-all hover:gap-3"
-          onClick={() => goTo(currentIndex + 1)}
-        >
-          Next
-          <ArrowIcon className="h-auto w-8 stroke-current" />
-        </Button>
       </motion.div>
     </motion.div>
   );

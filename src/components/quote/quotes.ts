@@ -17,16 +17,8 @@ export const QUOTES: Quote[] = [
     author: "Aleksandr Solzhenitsyn",
   },
   {
-    text: "When plunder becomes a way of life for a group of men in a society, over the course of time they create for themselves a legal system that authorizes it and a moral code that glorifies it.",
-    author: "Frédéric Bastiat",
-  },
-  {
     text: "As long as people believe in government, wars will never end.",
     author: "Larken Rose",
-  },
-  {
-    text: 'I have never understood why it is "greed" to want to keep the money you have earned but not greed to want to take somebody elses money.',
-    author: "Thomas Sowell",
   },
   {
     text: 'It is easy to be conspicuously "compassionate" if others are being forced to pay the cost.',

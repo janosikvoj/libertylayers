@@ -1,6 +1,7 @@
 "use client";
 
 import LayersOfLiberty from "@/components/brand/LayersOfLiberty";
+import { DOSSIER_SHAPE } from "@/components/dossier/dossier";
 import { DossierFolder } from "@/components/dossier/DossierFolder";
 import { DossierHint } from "@/components/dossier/DossierHint";
 import { DossierPage } from "@/components/dossier/DossierPage";
@@ -32,13 +33,18 @@ export default function LandingLayout({
       </motion.div>
 
       {isSealed && (
-        <motion.button
-          aria-label="Open classified file"
-          onClick={() => setStage("opening")}
-          onHoverStart={() => setStage("hover")}
-          onHoverEnd={() => setStage("sealed")}
-          className="absolute inset-1/3 outline-none z-40 cursor-pointer"
-        />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <motion.button
+            aria-label="Open classified file"
+            onClick={() => setStage("opening")}
+            onHoverStart={() => setStage("hover")}
+            onHoverEnd={() => setStage("sealed")}
+            className={cn(
+              "pointer-events-auto absolute outline-none z-40 cursor-pointer",
+              DOSSIER_SHAPE,
+            )}
+          />
+        </div>
       )}
 
       <motion.div
