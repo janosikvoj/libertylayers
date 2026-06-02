@@ -3,9 +3,10 @@
 import { useDossier } from "@/context/DossierContext";
 import { cn } from "@/lib/utils";
 import { NavigationMenu } from "@base-ui/react/navigation-menu";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Annotated, Drawing } from "../annotations/drawing-annotations";
 
 const LINKS = [
   {
@@ -88,7 +89,22 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
                     i === 0 && "font-semibold",
                   )}
                 >
-                  <span className="relative z-10 block">{item.title}</span>
+                  {item.title === "Articles" && isLandingPage ? (
+                    <Annotated
+                      className="relative z-10 block"
+                      annotation={
+                        <Drawing
+                          className="translate-y-1 stroke-yellow-600 left-1/2 -translate-x-1/2"
+                          drawing="triple-arrow"
+                          delay={0.6}
+                        />
+                      }
+                    >
+                      {item.title}
+                    </Annotated>
+                  ) : (
+                    <span className="relative z-10 block">{item.title}</span>
+                  )}
                   <motion.span
                     variants={{
                       initial: { clipPath: "inset(0 100% 0 0)" },

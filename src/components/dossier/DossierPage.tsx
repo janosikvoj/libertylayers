@@ -40,15 +40,17 @@ export function DossierPage({ children }: { children: React.ReactNode }) {
         isOpen && "pointer-events-auto",
       )}
     >
-      <p
-        className={cn(
-          "absolute top-2 font-semibold text-nowrap right-4 transition-all duration-700",
-          !isSealed &&
-            "top-4 right-[calc(100%-1.5rem)] sm:right-[calc(100%-3rem)] translate-x-full",
-        )}
-      >
-        ¤ Liberty Layers
-      </p>
+      {!isOpen && (
+        <p
+          className={cn(
+            "absolute top-2 font-semibold text-nowrap right-4 transition-all duration-700",
+            !isSealed &&
+              "top-4 right-[calc(100%-1.5rem)] sm:right-[calc(100%-3rem)] translate-x-full",
+          )}
+        >
+          ¤ Liberty Layers
+        </p>
+      )}
       {isOpen && children}
     </motion.main>
   );

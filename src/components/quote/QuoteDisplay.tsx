@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Censored } from "./Censored";
 import { CensoredBrush } from "./CensoredBrush";
 import { QUOTES } from "@/components/quote/quotes";
-import { Underline } from "../brand/inline-marks";
+import { Underline } from "../annotations/inline-marks";
 import { Button } from "@base-ui/react";
 import { ArrowIcon } from "../brand/ArrowIcon";
 

@@ -1,10 +1,10 @@
-'use client';
-import { BOOKS } from './_content/books';
-import { RESOURCES } from './_content/resources';
-import { THINKERS } from './_content/thinkers';
-import Bookshelf from './_components/Bookshelf';
-import ThinkerTimeline from './_components/ThinkerTimeline';
-import Link from 'next/link';
+"use client";
+import { BOOKS } from "./_content/books";
+import { RESOURCES } from "./_content/resources";
+import { THINKERS } from "./_content/thinkers";
+import Bookshelf from "./_components/Bookshelf";
+import ThinkerTimeline from "./_components/ThinkerTimeline";
+import Link from "next/link";
 
 export default function ArchivePage() {
   return (

@@ -1,13 +1,13 @@
-import type { MDXComponents } from 'mdx/types';
-import { Highlight, Underline } from '@/components/brand/inline-marks';
-import { GlossaryTerm } from './components/navigation/GlossaryTerm';
-import Link from 'next/link';
+import type { MDXComponents } from "mdx/types";
+import { Highlight, Underline } from "@/components/annotations/inline-marks";
+import { GlossaryTerm } from "./components/navigation/GlossaryTerm";
+import Link from "next/link";
 
 const components: MDXComponents = {
   h1: ({ children }) => (
     <div className="h-[90vh] flex items-center">
       <h1
-        style={{ filter: 'url(#stamp)' }}
+        style={{ filter: "url(#stamp)" }}
         id="economic-calculation"
         className="font-semibold text-8xl tracking-tight"
       >
@@ -31,7 +31,7 @@ const components: MDXComponents = {
       return <GlossaryTerm slug={glossaryMatch[1]}>{children}</GlossaryTerm>;
     }
     // Everything else: standard Next.js link
-    return <Link href={href ?? '#'}>{children}</Link>;
+    return <Link href={href ?? "#"}>{children}</Link>;
   },
   blockquote: ({ children }) => (
     <figure className="my-24 mx-auto w-lg rotate-2 not-prose">
