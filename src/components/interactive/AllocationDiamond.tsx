@@ -58,7 +58,7 @@ function CornerLabel({
       />
       <span
         className={cn(
-          "absolute text-stone-800 m-12 font-semibold text-base tracking-tight",
+          "absolute text-stone-800 m-6 sm:m-12 font-semibold text-base tracking-tight",
           corner === "tl" && "top-0 left-0",
           corner === "tr" && "top-0 right-0",
           corner === "bl" && "bottom-0 left-0",
@@ -69,7 +69,7 @@ function CornerLabel({
       </span>
       <motion.span
         className={cn(
-          "absolute text-yellow-600 font-mono text-8xl m-8 mx-10",
+          "absolute text-yellow-600 font-mono text-6xl sm:text-7xl md:text-8xl m-4 sm:m-8 mx-6 sm:mx-10",
           corner === "tl" && "bottom-0 right-0",
           corner === "tr" && "bottom-0 left-0",
           corner === "bl" && "top-0 right-0",
@@ -157,7 +157,7 @@ export default function AllocationPad() {
   );
 
   return (
-    <div className="mx-16 max-w-6xl w-screen">
+    <div className="sm:mx-16 max-w-6xl w-screen">
       <div className="relative flex flex-col items-center gap-6 bg-yellow-300">
         <PipCorners />
 

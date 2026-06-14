@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { DossierProvider } from "@/context/DossierContext";
 import { Header } from "@/components/navigation/Header";
+import InactivityTimer from "@/components/common/InactivityTimer";
 
 export const metadata: Metadata = {
   title: "Liberty Layers",
@@ -22,6 +23,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className="min-h-full font-sans bg-stone-950">
+        <InactivityTimer />
         <DossierProvider>
           <NuqsAdapter>
             <Header />

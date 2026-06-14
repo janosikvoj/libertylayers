@@ -203,11 +203,11 @@ export default function SubjectiveValueSliders() {
   const [unlockedCount, setUnlockedCount] = useState(1);
 
   return (
-    <div className="mx-16 max-w-6xl w-screen">
+    <div className="sm:mx-16 max-w-6xl w-screen">
       <motion.div
         layout
         transition={{ type: "spring", visualDuration: 0.5, bounce: 0.15 }}
-        className="relative px-24 py-16 flex flex-col gap-12 bg-yellow-300"
+        className="relative px-6 sm:px-12 md:px-24 py-16 flex flex-col gap-12 bg-yellow-300"
       >
         <PipCorners />
         {ITEMS.slice(0, unlockedCount).map((item, index) => (

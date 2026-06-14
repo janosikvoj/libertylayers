@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { motion } from "motion/react";
 import Pip from "@/components/brand/Pip";
+import ExternalLink from "@/components/navigation/ExternalLink";
 
 const spineWidthFromPages = (pages: number) => {
   const min = 32,
@@ -38,7 +39,7 @@ function Bookshelf({ books }: { books: Book[] }) {
                 return (
                   <motion.div
                     key={book.title + i}
-                    onClick={() => setActiveIndex(isActive ? null : i)}
+                    onClick={() => setActiveIndex(i)}
                     initial="idle"
                     animate={isActive ? "active" : "idle"}
                     whileHover="hovered"
@@ -69,9 +70,11 @@ function Bookshelf({ books }: { books: Book[] }) {
                       className="w-full h-full origin-left relative transform-3d"
                     >
                       {/* FRONT COVER */}
-                      <div
+                      <ExternalLink
+                        href={book.href}
                         className={cn(
                           "absolute top-0 left-0 w-64 h-full flex flex-col gap-4 justify-between p-4",
+                          !isActive && "pointer-events-none",
                           colors.cover,
                           colors.text,
                         )}
@@ -94,7 +97,7 @@ function Bookshelf({ books }: { books: Book[] }) {
                             {book.year}
                           </span>
                         </div>
-                      </div>
+                      </ExternalLink>
 
                       {/* SPINE */}
                       <div
@@ -132,7 +135,7 @@ function Bookshelf({ books }: { books: Book[] }) {
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
 
-      <div className="flex justify-center gap-6 mt-8">
+      <div className="flex justify-center gap-6 mt-8 flex-wrap">
         {(
           Object.entries(CATEGORY_COLORS) as [
             Book["category"],

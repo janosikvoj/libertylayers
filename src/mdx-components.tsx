@@ -9,7 +9,7 @@ const components: MDXComponents = {
       <h1
         style={{ filter: "url(#stamp)" }}
         id="economic-calculation"
-        className="font-semibold text-8xl tracking-tight"
+        className="font-semibold text-6xl sm:text-7xl md:text-8xl tracking-tight"
       >
         {children}
       </h1>
@@ -34,9 +34,9 @@ const components: MDXComponents = {
     return <Link href={href ?? "#"}>{children}</Link>;
   },
   blockquote: ({ children }) => (
-    <figure className="my-24 mx-auto w-lg rotate-2 not-prose">
-      <div className="relative p-8 bg-yellow-200 text-yellow-300 bg-[repeating-linear-gradient(transparent,transparent_30px,currentColor_30px,currentColor_31px)]">
-        <div className="relative font-mono text-xl leading-snug text-yellow-900 text-pretty space-y-8">
+    <figure className="my-24 mx-auto w-lg max-w-full rotate-2 not-prose">
+      <div className="relative p-4 sm:p-8 bg-yellow-200 text-yellow-300 bg-[repeating-linear-gradient(transparent,transparent_30px,currentColor_30px,currentColor_31px)]">
+        <div className="relative font-mono text-lg sm:text-xl leading-snug text-yellow-900 text-pretty space-y-8">
           {children}
         </div>
       </div>
