@@ -1,230 +1,230 @@
-import Bleed from "@/components/common/Bleed";
-import SubjectiveValueSliders from "@/components/interactive/SubjectiveValueSliders";
-import AllocationDiamond from "@/components/interactive/AllocationDiamond";
-import PencilPriceReceipt from "@/components/interactive/PencilPriceReceipt";
-import ShortageSimulator from "@/components/interactive/ShortageSimulator";
+    import Bleed from "@/components/common/Bleed";
+    import SubjectiveValueSliders from "@/components/interactive/SubjectiveValueSliders";
+    import AllocationDiamond from "@/components/interactive/AllocationDiamond";
+    import PencilPriceReceipt from "@/components/interactive/PencilPriceReceipt";
+    import ShortageSimulator from "@/components/interactive/ShortageSimulator";
 
-# Economic Calculation
+    # Economic Calculation
 
-<span className="text-2xl sm:text-3xl leading-tight font-light text-yellow-800">
-    Every society must answer the same question every single day: which of the
-    infinite possible uses of this scarce resource is the most valuable one? The
-    answer is harder than it looks.
-</span>
+    <span className="text-2xl sm:text-3xl leading-tight font-light text-yellow-800">
+        Every society must answer the same question every single day: which of the
+        infinite possible uses of this scarce resource is the most valuable one? The
+        answer is harder than it looks.
+    </span>
 
-## The Core Problem
+    ## The Core Problem
 
-### Scarcity and Choice
+    ### Scarcity and Choice
 
-Before any system — a market, a government, a committee — can allocate
-resources wisely, it must first answer a more basic question: what does it
-even mean for something to have value?
+    Before any system — a market, a government, a committee — can allocate
+    resources wisely, it must first answer a more basic question: what does it
+    even mean for something to have value?
 
-### Defining Value
+    ### Defining Value
 
-Three major traditions have tried to answer this.
+    Three major traditions have tried to answer this.
 
-**Labor-time theory** holds that the value of a good is determined by the work required to produce
-it — the hours of effort embedded in a loaf of bread or a bolt of steel.
-Karl Marx formalized this intuition.
+    **Labor-time theory** holds that the value of a good is determined by the work required to produce
+    it — the hours of effort embedded in a loaf of bread or a bolt of steel.
+    Karl Marx formalized this intuition.
 
-**Cost-of-production theory** extends this idea: value reflects the
-combined inputs — wages, materials, energy — needed to bring a good to
-market. If a product costs more to make, it is supposedly worth more.
+    **Cost-of-production theory** extends this idea: value reflects the
+    combined inputs — wages, materials, energy — needed to bring a good to
+    market. If a product costs more to make, it is supposedly worth more.
 
-**Subjective value theory** rejects both. Value is not a physical property of
-objects. _It exists only in the mind of the person making a choice_ — and
-it changes depending on who that person is, what they already have, and
-what they urgently need right now.
+    **Subjective value theory** rejects both. Value is not a physical property of
+    objects. _It exists only in the mind of the person making a choice_ — and
+    it changes depending on who that person is, what they already have, and
+    what they urgently need right now.
 
-If a tailor spends forty hours producing an ugly coat that nobody wants, has
-he produced forty hours of value? By labor-time logic, yes. By the judgment
-of every potential buyer, emphatically not. **Value requires a valuer.** It
-cannot be read off a production ledger.
+    If a tailor spends forty hours producing an ugly coat that nobody wants, has
+    he produced forty hours of value? By labor-time logic, yes. By the judgment
+    of every potential buyer, emphatically not. **Value requires a valuer.** It
+    cannot be read off a production ledger.
 
-### Subjective Differences
+    ### Subjective Differences
 
-The gap between cost and value is not a rounding error. It varies from
-person to person in ways no central observer can predict.
+    The gap between cost and value is not a rounding error. It varies from
+    person to person in ways no central observer can predict.
 
-Before you continue, place yourself on each scale. There are no right
-answers. When you commit, you will see where others placed theirs.
+    Before you continue, place yourself on each scale. There are no right
+    answers. When you commit, you will see where others placed theirs.
 
-<Bleed className="flex justify-center">
-    <SubjectiveValueSliders />
-</Bleed>
+    <Bleed className="flex justify-center">
+        <SubjectiveValueSliders />
+    </Bleed>
 
-Nobody placed them identically. This is the central fact that any economic
-system must somehow handle: the [subjective value](/glossary/subjective-value)
-of the exact same good differs wildly. A system that ignores this dispersion
-does not distribute goods efficiently. It distributes them arbitrarily.
+    Nobody placed them identically. This is the central fact that any economic
+    system must somehow handle: the [subjective value](/glossary/subjective-value)
+    of the exact same good differs wildly. A system that ignores this dispersion
+    does not distribute goods efficiently. It distributes them arbitrarily.
 
----
+    ---
 
-## The Price Mechanism
+    ## The Price Mechanism
 
-### Signals vs. Numbers
+    ### Signals vs. Numbers
 
-If value is dispersed across millions of minds, how does coordination
-happen? How does a baker in Prague know how much flour to buy? In a market
-economy, the answer is the [price mechanism](/glossary/price-mechanism).
+    If value is dispersed across millions of minds, how does coordination
+    happen? How does a baker in Prague know how much flour to buy? In a market
+    economy, the answer is the [price mechanism](/glossary/price-mechanism).
 
-A price is a _compressed signal_ — the output of every purchase, refusal,
-and shortage across an entire supply chain. When the price of wheat rises,
-the signal reads: _this resource is more scarce relative to demand_. Farmers
-plant more. Consumers reconsider. Thousands of independent adjustments
-happen without a single coordinating directive.
+    A price is a _compressed signal_ — the output of every purchase, refusal,
+    and shortage across an entire supply chain. When the price of wheat rises,
+    the signal reads: _this resource is more scarce relative to demand_. Farmers
+    plant more. Consumers reconsider. Thousands of independent adjustments
+    happen without a single coordinating directive.
 
-**A government can set a number, but not reality.** A decreed price of 1
-ruble per loaf does not mean bread and 1 ruble are genuinely equivalent in
-the minds of buyers. It merely forbids the market from expressing otherwise.
+    **A government can set a number, but not reality.** A decreed price of 1
+    ruble per loaf does not mean bread and 1 ruble are genuinely equivalent in
+    the minds of buyers. It merely forbids the market from expressing otherwise.
 
-### The Calculation Problem
+    ### The Calculation Problem
 
-In 1920, Ludwig von Mises published a short essay presenting a stark logical
-challenge to central planning. His argument assumed perfect honesty and
-dedication among planners.
+    In 1920, Ludwig von Mises published a short essay presenting a stark logical
+    challenge to central planning. His argument assumed perfect honesty and
+    dedication among planners.
 
-To rationally decide whether to build a bridge using steel or aluminum, a
-planner needs to know the [opportunity cost](/glossary/opportunity-cost)
-of each choice. But opportunity cost is revealed only by the prices that
-emerge when free actors trade their own resources. Without those prices,
-planners cannot calculate.
+    To rationally decide whether to build a bridge using steel or aluminum, a
+    planner needs to know the [opportunity cost](/glossary/opportunity-cost)
+    of each choice. But opportunity cost is revealed only by the prices that
+    emerge when free actors trade their own resources. Without those prices,
+    planners cannot calculate.
 
-> Where there is no free market, there is no pricing mechanism; without a
-> pricing mechanism, there is no economic calculation.
->
-> — Ludwig von Mises, 1920
+    > Where there is no free market, there is no pricing mechanism; without a
+    > pricing mechanism, there is no economic calculation.
+    >
+    > — Ludwig von Mises, 1920
 
-### Allocating Blindly
+    ### Allocating Blindly
 
-The [economic calculation](/glossary/economic-calculation) problem becomes
-visceral the moment you try to act as the planner. Below is a simplified
-model: four categories, a fixed pool of resources, and a single cursor.
+    The [economic calculation](/glossary/economic-calculation) problem becomes
+    visceral the moment you try to act as the planner. Below is a simplified
+    model: four categories, a fixed pool of resources, and a single cursor.
 
-<Bleed className="flex justify-center">
-    <AllocationDiamond />
-</Bleed>
+    <Bleed className="flex justify-center">
+        <AllocationDiamond />
+    </Bleed>
 
-Even in this stripped-down model, there is no obviously correct position.
-Every gain for one category is a loss for the others. Now imagine tens of
-millions of distinct goods and billions of simultaneous decisions.
+    Even in this stripped-down model, there is no obviously correct position.
+    Every gain for one category is a loss for the others. Now imagine tens of
+    millions of distinct goods and billions of simultaneous decisions.
 
-The planner faces a problem that _has no stable solution_ because the
-inputs shift continuously. The planner must make a decision before finding
-out if it was right, and by the time they find out, the situation has
-already moved on.
+    The planner faces a problem that _has no stable solution_ because the
+    inputs shift continuously. The planner must make a decision before finding
+    out if it was right, and by the time they find out, the situation has
+    already moved on.
 
----
+    ---
 
-## Dispersed Knowledge
+    ## Dispersed Knowledge
 
-### Tacit Information
+    ### Tacit Information
 
-Friedrich Hayek extended Mises' argument. The [knowledge problem](/glossary/knowledge-problem)
-is not just that planners lack data. It is that most knowledge required to
-run an economy _cannot be transmitted to any center at all_.
+    Friedrich Hayek extended Mises' argument. The [knowledge problem](/glossary/knowledge-problem)
+    is not just that planners lack data. It is that most knowledge required to
+    run an economy _cannot be transmitted to any center at all_.
 
-Much of what makes markets work is **tacit knowledge**. The farmer who senses
-the soil is too wet this week. The trucker who knows a mountain road ices
-over early. None of this can be reported upward into a planning office. It
-exists only in practice.
+    Much of what makes markets work is **tacit knowledge**. The farmer who senses
+    the soil is too wet this week. The trucker who knows a mountain road ices
+    over early. None of this can be reported upward into a planning office. It
+    exists only in practice.
 
-Prices allow this dispersed, inarticulate knowledge to coordinate outcomes.
-Every transaction is a small vote cast by someone with local knowledge.
-_Abolish the votes, and you abolish the signal._
+    Prices allow this dispersed, inarticulate knowledge to coordinate outcomes.
+    Every transaction is a small vote cast by someone with local knowledge.
+    _Abolish the votes, and you abolish the signal._
 
-### Anatomy of a Price
+    ### Anatomy of a Price
 
-The component below shows the supply chain of an ordinary pencil. Select
-any part of it.
+    The component below shows the supply chain of an ordinary pencil. Select
+    any part of it.
 
-<Bleed desktopOnly className="flex justify-center">
-    <PencilPriceReceipt />
-</Bleed>
+    <Bleed desktopOnly className="flex justify-center">
+        <PencilPriceReceipt />
+    </Bleed>
 
-Notice the prices on the receipt: all listed as _¤ ?.??_. That blank is
-intentional. No single person — not the manufacturer or the economist —
-knows the correct price for each input in isolation.
+    Notice the prices on the receipt: all listed as _¤ ?.??_. That blank is
+    intentional. No single person — not the manufacturer or the economist —
+    knows the correct price for each input in isolation.
 
-**The price is not a cost calculation. It emerged.** It is a
-[spontaneous order](/glossary/spontaneous-order) — the compressed result of
-millions of independent decisions coordinating the whole chain. This is what
-a planned economy loses: the mechanism that generates the information that
-efficiency requires.
+    **The price is not a cost calculation. It emerged.** It is a
+    [spontaneous order](/glossary/spontaneous-order) — the compressed result of
+    millions of independent decisions coordinating the whole chain. This is what
+    a planned economy loses: the mechanism that generates the information that
+    efficiency requires.
 
----
+    ---
 
-## Distorting the Signal
+    ## Distorting the Signal
 
-### Overriding Prices
+    ### Overriding Prices
 
-Governments frequently override the price mechanism through price ceilings
-and price floors. The goals — affordable housing or living wages — are
-often sympathetic.
+    Governments frequently override the price mechanism through price ceilings
+    and price floors. The goals — affordable housing or living wages — are
+    often sympathetic.
 
-But intervening in a price does not change the underlying scarcity. **It
-changes the signal while leaving reality untouched.**
+    But intervening in a price does not change the underlying scarcity. **It
+    changes the signal while leaving reality untouched.**
 
-Take a rental market. At equilibrium, every landlord willing to rent at the going rate finds a tenant willing to pay it. The price does the matching. Now impose a ceiling — say, rent control. Landlords whose costs exceed the cap simply withdraw: the retired couple renting a spare room, the small private landlord operating on thin margins. Supply shrinks. The tenants who remain housed are better off. But the queue of people who cannot find housing at all grows invisibly — they never appear in any statistic.
+    Take a rental market. At equilibrium, every landlord willing to rent at the going rate finds a tenant willing to pay it. The price does the matching. Now impose a ceiling — say, rent control. Landlords whose costs exceed the cap simply withdraw: the retired couple renting a spare room, the small private landlord operating on thin margins. Supply shrinks. The tenants who remain housed are better off. But the queue of people who cannot find housing at all grows invisibly — they never appear in any statistic.
 
-A floor works the same way in reverse. A minimum housing standard sounds protective, but it prices out the cheapest units. The people who could only afford those units don't get better housing. They get none.
+    A floor works the same way in reverse. A minimum housing standard sounds protective, but it prices out the cheapest units. The people who could only afford those units don't get better housing. They get none.
 
-<Bleed desktopOnly className="flex justify-center">
-    <ShortageSimulator />
-</Bleed>
+    <Bleed desktopOnly className="flex justify-center">
+        <ShortageSimulator />
+    </Bleed>
 
-Drag the ceiling down and watch who disappears first: not the institutional investor or the new-build developer, but the small landlords with the lowest costs — the ones most likely to house the people the policy was meant to protect. Drag the floor up past equilibrium and the surplus makes the problem visible from the other side: sellers willing to trade, buyers willing to pay, but the price won't let them meet.
+    Drag the ceiling down and watch who disappears first: not the institutional investor or the new-build developer, but the small landlords with the lowest costs — the ones most likely to house the people the policy was meant to protect. Drag the floor up past equilibrium and the surplus makes the problem visible from the other side: sellers willing to trade, buyers willing to pay, but the price won't let them meet.
 
-Every override carries the same hidden cost: the information that price would have transmitted goes dark.
+    Every override carries the same hidden cost: the information that price would have transmitted goes dark.
 
-### Invisible Waste
+    ### Invisible Waste
 
-Remove price signals, and the result is **systematic waste**. In a market,
-opportunity cost is continuously revealed. The cost of choosing appears
-before the decision is made.
+    Remove price signals, and the result is **systematic waste**. In a market,
+    opportunity cost is continuously revealed. The cost of choosing appears
+    before the decision is made.
 
-In a planned economy, opportunity cost is invisible. Resources are
-commanded, but nobody tracks what was foregone. Waste accumulates silently
-beneath a facade of production statistics.
+    In a planned economy, opportunity cost is invisible. Resources are
+    commanded, but nobody tracks what was foregone. Waste accumulates silently
+    beneath a facade of production statistics.
 
-### The Soviet Experiment
+    ### The Soviet Experiment
 
-The USSR ran the largest controlled experiment in central planning in human
-history. The results were unambiguous.
+    The USSR ran the largest controlled experiment in central planning in human
+    history. The results were unambiguous.
 
-Factories overproduced goods nobody wanted while failing to supply basic
-necessities. Machinery was built heavier than necessary to meet tonnage
-quotas. Agricultural collectivization produced repeated famines.
+    Factories overproduced goods nobody wanted while failing to supply basic
+    necessities. Machinery was built heavier than necessary to meet tonnage
+    quotas. Agricultural collectivization produced repeated famines.
 
-_None of this was caused by malice._ The failure was architectural — built
-into any system that severs the connection between human knowledge, human
-choice, and resource allocation.
+    _None of this was caused by malice._ The failure was architectural — built
+    into any system that severs the connection between human knowledge, human
+    choice, and resource allocation.
 
----
+    ---
 
-## Conclusion
+    ## Conclusion
 
-### What Remains Open
+    ### What Remains Open
 
-The calculation problem is not a defence of any particular market outcome. It is a narrower claim: that without prices, no one can know what they are giving up.
+    The calculation problem is not a defence of any particular market outcome. It is a narrower claim: that without prices, no one can know what they are giving up.
 
-Inequality exists because people are not identical — in health, in talent, in circumstance. That would be true under any system. The question is whether concealing the price signal narrows those differences or simply hides them.
+    Inequality exists because people are not identical — in health, in talent, in circumstance. That would be true under any system. The question is whether concealing the price signal narrows those differences or simply hides them.
 
-Pollution, congestion, and overfishing exist where property rights are absent or unclear. The cost is real. But the response most consistent with the calculation argument is not to override the price — it is to ask why the resource has no owner, and what it would take to give it one.
+    Pollution, congestion, and overfishing exist where property rights are absent or unclear. The cost is real. But the response most consistent with the calculation argument is not to override the price — it is to ask why the resource has no owner, and what it would take to give it one.
 
-There are no clean answers here. But the questions have a shape: every proposed intervention has a price, paid somewhere, by someone, whether or not it appears in any budget.
+    There are no clean answers here. But the questions have a shape: every proposed intervention has a price, paid somewhere, by someone, whether or not it appears in any budget.
 
-### The Final Question
+    ### The Final Question
 
-Every civilization must calculate. The question is not whether to do it,
-but how — and which signals to trust.
+    Every civilization must calculate. The question is not whether to do it,
+    but how — and which signals to trust.
 
-The market remains the only known mechanism that continuously discovers what
-people actually value, tests those discoveries, and corrects mistakes at the
-cost of those who made them. **The discovery is never complete. The
-correction is never perfect.** But the feedback loop exists, grounded in
-voluntary choice.
+    The market remains the only known mechanism that continuously discovers what
+    people actually value, tests those discoveries, and corrects mistakes at the
+    cost of those who made them. **The discovery is never complete. The
+    correction is never perfect.** But the feedback loop exists, grounded in
+    voluntary choice.
 
-When that loop is severed, the question of whose judgment replaces it
-becomes the most consequential political choice a society can make.
+    When that loop is severed, the question of whose judgment replaces it
+    becomes the most consequential political choice a society can make.
