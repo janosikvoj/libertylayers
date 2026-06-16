@@ -2,6 +2,11 @@ import type { MDXComponents } from "mdx/types";
 import { Highlight, Underline } from "@/components/annotations/inline-marks";
 import { GlossaryTerm } from "./components/navigation/GlossaryTerm";
 import Link from "next/link";
+import Bleed from "./components/common/Bleed";
+import SubjectiveValueSliders from "./components/interactive/SubjectiveValueSliders";
+import AllocationDiamond from "./components/interactive/AllocationDiamond";
+import PencilPriceReceipt from "./components/interactive/PencilPriceReceipt";
+import ShortageSimulator from "./components/interactive/ShortageSimulator";
 
 const components: MDXComponents = {
   h1: ({ children }) => (
@@ -42,6 +47,11 @@ const components: MDXComponents = {
       </div>
     </figure>
   ),
+  Bleed,
+  SubjectiveValueSliders,
+  AllocationDiamond,
+  PencilPriceReceipt,
+  ShortageSimulator,
 };
 
 export function useMDXComponents(): MDXComponents {

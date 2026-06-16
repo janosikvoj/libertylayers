@@ -85,7 +85,7 @@ function CornerLabel({
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function AllocationPad() {
+export default function AllocationDiamond() {
   const padRef = useRef<HTMLDivElement>(null);
 
   // Raw normalized position [0, 1]
